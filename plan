@@ -1,0 +1,280 @@
+⭐ Byte2Build – RHEL Training Series (Detailed Episode Breakdown)
+(Beginner → Intermediate → Advanced → Automation → DevOps Readiness)
+
+📘 Episode 01 — Introduction to RedHat Linux (RHEL)
+What you will cover:
+
+What is Linux?
+
+Why RedHat in enterprise environments
+
+Subscription model (RHEL developer mode)
+
+RHEL in Cloud, DevOps & Production
+
+What this series will cover from basic → advanced
+
+Requirements for practical labs
+
+Environment preparation overview (before installation)
+
+📘 Episode 02 — Downloading & Installing RHEL (Merged Episode 2 + 3)
+What you will cover:
+
+How to download the correct RHEL ISO (Developer Subscription)
+
+Virtualization options: VirtualBox / VMware / Hyper‑V
+
+Creating a VM: CPU, RAM, storage, network modes (NAT/Bridged)
+
+Booting the ISO
+
+Full installation walkthrough
+
+Partitioning basics (guided/manual)
+
+Creating the initial user & root password
+
+First boot experience
+
+Understanding GNOME / CLI
+
+Registering RHEL with subscription‑manager (optional)
+
+Updating the system after installation
+
+📘 Episode 03 — Linux Basics & File System Navigation
+What you will cover:
+
+Understanding the Linux shell (bash)
+
+File system structure: /, /home, /etc, /var, /usr, /tmp, /root
+
+Basic commands: ls, cd, pwd, mkdir, touch, rm, cat, less, head, tail
+
+Understanding absolute vs relative paths
+
+Command history and shortcuts
+
+Tab completion
+
+Basic help commands: man, --help
+
+📘 Episode 04 — Users & Groups (Complete Guide)
+What you will cover:
+
+Understanding users & groups
+
+useradd, usermod, userdel
+
+/etc/passwd full explanation
+
+/etc/shadow full explanation
+
+Password aging & policies
+
+Group management: groupadd, groupmod, groupdel
+
+Adding user to groups: gpasswd, usermod -aG
+
+UID, GID concepts
+
+Login shells
+
+Real-world examples
+
+📘 Episode 05 — File Permissions & Ownership
+What you will cover:
+
+Understanding read/write/execute
+
+File vs directory permissions
+
+Octal & symbolic modes
+
+chmod, chown, chgrp
+
+Permission change examples
+
+umask explanation
+
+Real-world permission issues
+
+📘 Episode 06 — Advanced Permissions (SUID, SGID & Sticky Bit)
+What you will cover:
+
+What is SUID & real-world examples (passwd command)
+
+How SGID works on files & directories
+
+Sticky bit in multi-user environments
+
+Security risks & best practices
+
+Hands-on demonstrations
+
+📘 Episode 07 — Access Control Lists (ACL)
+What you will cover:
+
+Why ACL is needed beyond standard permissions
+
+setfacl, getfacl
+
+Default ACLs on directories
+
+Overriding permissions
+
+Real enterprise examples
+
+📘 Episode 08 — Package Management (DNF/YUM)
+What you will cover:
+
+What is DNF/YUM?
+
+Installing, removing, updating packages
+
+Working with repos
+
+dnf history
+
+Installing groups
+
+Troubleshooting package issues
+
+📘 Episode 09 — System Services & systemctl
+What you will cover:
+
+Understanding systemd
+
+Starting/stopping services
+
+Enabling/disabling services at boot
+
+Checking service logs
+
+Understanding service states
+
+Creating custom services (intro)
+
+📘 Episode 10 — Networking in RHEL
+What you will cover:
+
+IP addressing basics
+
+ip, nmcli, nmtui usage
+
+DNS configuration
+
+Hostname setup & /etc/hosts
+
+Network interface troubleshooting
+
+Ping, traceroute, nslookup
+
+📘 Episode 11 — Firewalld Deep Dive
+What you will cover:
+
+Zones & services
+
+Adding/removing rules
+
+Persistent vs runtime rules
+
+Opening specific ports
+
+Security best practices
+
+📘 Episode 12 — SELinux Fundamentals
+What you will cover:
+
+What is SELinux? Why it matters
+
+Enforcing, permissive, disabled modes
+
+SELinux contexts
+
+Troubleshooting SELinux denials
+
+semanage, restorecon, setenforce
+
+Real enterprise scenarios
+
+📘 Episode 13 — Storage & File Systems
+What you will cover:
+
+Disk identification: lsblk, fdisk, blkid
+
+Partitioning
+
+Creating file systems
+
+Mounting & unmounting
+
+/etc/fstab configuration
+
+LVM (intro)
+
+📘 Episode 14 — Cron Jobs & Automation Basics
+What you will cover:
+
+What is cron?
+
+crontab -e
+
+Scheduling recurring tasks
+
+at command (one-time jobs)
+
+Log checking
+
+Automating cleanup tasks
+
+📘 Episode 15 — Shell Scripting for Beginners
+What you will cover:
+
+What is shell scripting?
+
+Variables
+
+If‑else conditions
+
+Loops
+
+Functions
+
+Real system scripts
+
+Deploying scripts
+
+📘 Episode 16 — Introduction to Ansible (Automation)
+What you will cover:
+
+What is Ansible? Why used in DevOps & Cloud
+
+Inventory file
+
+Ad-hoc commands
+
+Writing first playbook
+
+Installing packages
+
+Managing users
+
+Copying files
+
+Real automation examples
+
+📘 Episode 17 — RHEL for DevOps
+What you will cover:
+
+Why DevOps requires Linux mastery
+
+Common tools: Git, Docker, Kubernetes (overview)
+
+Cloud readiness
+
+Preparing for RHCSA / DevOps roles
+
+Real-world enterprise examples
+
