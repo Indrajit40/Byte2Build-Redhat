@@ -1,0 +1,65 @@
+**“Welcome back to Byte2Build!
+I’m Indrajit, and today we continue our RedHat Linux journey — a journey that transforms beginners into confident Linux engineers.
+
+In the last episode, we installed RedHat Enterprise Linux, and today the real learning begins. Because RHEL is not something you memorize — it’s something you experience, command by command.
+
+Every enterprise, every DevOps pipeline, every cloud environment depends on strong Linux fundamentals, and RedHat gives you the foundation the industry trusts.
+
+So don’t worry about making mistakes — this is hands‑on, this is practical, and this is how real engineers learn:
+One command. One concept. One byte at a time.
+
+Today, we explore the heart of RedHat Linux — the file system and the command line.
+Let’s open the terminal… and start building your RedHat skills.”**
+
+
+
+
+Understanding the Linux Prompt: [root@localhost 
+When you open a terminal in RedHat (RHEL), you see a prompt like:
+[root@localhost ~]#
+Here is the full breakdown with deeper technical meaning.________________________________________
+🔹 1) root → Superuser Account (UID = 0)
+•	root is the administrator of the entire Linux system.
+•	It has unrestricted access to all files, processes, services, and settings.
+•	In Linux, users are identified by a unique UID (User ID).
+✔ Root always has UID = 0
+You can check this by running:
+id root 
+Output example:
+uid=0(root) gid=0(root) groups=0(root)
+✔ What UID 0 means:
+•	Full control over system
+•	Can install/remove packages
+•	Can modify system configuration
+•	Can create/delete any file
+•	Can start/stop system services
+•	No restrictions from file permissions
+✔ Security Note:
+Never use root for regular work — one wrong command can break the entire system.
+🔹 2) @localhost → Hostname of the Machine
+•	localhost is the default hostname for a system not yet configured.
+•	In real servers, you may see names like:
+•	app-server1
+•	db-prod
+•	mail-node01
+Check hostname:
+hostname 
+🔹 3) ~ → Current Working Directory
+•	~ means home directory of the current user.
+•	For root: /root
+•	For user: /home/username
+Check current directory:
+pwd 
+Example:
+/root
+🔹 4) # → Root Prompt Symbol
+•	The last symbol of the prompt shows privilege level:
+•	# → root user
+•	$ → normal user
+This is extremely important when writing scripts or executing commands.
+Examples:
+[root@localhost ~]#   → full system privileges  
+[indrajit@localhost ~]$ → normal user privileges
+
+
+
