@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html>
-<html b:version='2' expr:dir='data:blog.languageDirection'
-      xmlns='http://www.w3.org/1999/xhtml'
-      xmlns:b='http://www.google.com/2005/gml/b'
-      xmlns:data='http://www.google.com/2005/gml/data'
-      xmlns:expr='http://www.google.com/2005/gml/expr'>
+<b:template version="2"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:b="http://www.google.com/2005/gml/b"
+    xmlns:data="http://www.google.com/2005/gml/data"
+    xmlns:expr="http://www.google.com/2005/gml/expr">
 
-<head>
-  <meta charset="UTF-8"/>
-  <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
-  <meta content='Learn one command, master one concept, grow one byte at a time.' name='description'/>
-  <meta content='Byte2Build, Linux, RHCSA, Cloud, DevOps, Tutorials' name='keywords'/>
-  <title>Byte2Build</title>
+<b:defaultwidgetversion>2</b:defaultwidgetversion>
 
-<b:skin><![CDATA[
+
+<!-- ===========================
+     TEMPLATE SKIN (CSS)
+=========================== -->
+<b:template-skin><![CDATA[
 
 /* ===========================================
    BYTE2BUILD PREMIUM CUSTOM THEME (Dark Neon)
-   PART A — BASE COLORS, RESET, HEADER
 ===========================================*/
 
 :root {
@@ -48,7 +45,7 @@ body {
   line-height: 1.7;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header {
   width: 100%;
   background: var(--bb-bg-light);
@@ -59,13 +56,8 @@ header {
   z-index: 9999;
 }
 
-.logo-area {
-  text-align: center;
-}
-
-.logo-area img {
-  max-height: 70px;
-}
+.logo-area { text-align: center; }
+.logo-area img { max-height: 70px; }
 
 .tagline {
   font-size: 13px;
@@ -76,50 +68,80 @@ header {
 }
 
 /* NAVBAR */
-#navbar {
-  width: 100%;
-  text-align: center;
-  margin-top: 10px;
-}
-
+#navbar { text-align: center; margin-top: 10px; }
 #navbar a {
   color: var(--bb-text);
   margin: 0 15px;
   font-size: 14px;
   text-decoration: none;
 }
+#navbar a:hover { color: var(--bb-hover); }
 
-#navbar a:hover {
-  color: var(--bb-hover);
+body { padding-top: 150px; }
+
+/* LAYOUT */
+#bb-layout {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  margin: auto;
+  gap: 20px;
 }
 
-body {
-  padding-top: 150px;
+/* LEFT SIDEBAR */
+#bb-left {
+  width: 22%;
+  background: var(--bb-card);
+  padding: 15px;
+  border-radius: 6px;
 }
 
-]]></b:skin>
+/* CENTER */
+#bb-content {
+  width: 56%;
+  padding: 20px;
+}
 
-</head>
+/* RIGHT SIDEBAR */
+#bb-right {
+  width: 22%;
+  background: var(--bb-card);
+  padding: 15px;
+  border-radius: 6px;
+}
+
+]]></b:template-skin>
+
+
+
+<!-- =========================================================
+     BLOGGER WIDGET SYSTEM
+========================================================= -->
+<b:widgets>
+
+
+
+<!-- =========================================================
+     MAIN PAGE RENDER BLOCK
+========================================================= -->
+<b:includable id='main'>
 <body>
 
+
 <!-- ===========================
-     BYTE2BUILD HEADER AREA
+     HEADER AREA
 =========================== -->
 
 <header>
 
   <div class="logo-area">
     <b:section id='header' showaddelement='yes'>
-      <b:widget id='Header1' type='Header'>
-        <title>BYTE2BUILD</title>
-        <description>Learn one command, master one concept, grow one byte at a time.</description>
-      </b:widget>
+      <b:widget id='Header1' type='Header'/>
     </b:section>
   </div>
 
   <div class="tagline">Learn one command, master one concept, grow one byte at a time.</div>
 
-  <!-- Navigation Menu -->
   <div id="navbar">
     <a expr:href='data:blog.homepageUrl'>Home</a>
     <a href="#">Red Hat Series</a>
@@ -132,48 +154,27 @@ body {
 </header>
 
 
-<!-- ===========================
-     MAIN 3 COLUMN LAYOUT
-=========================== -->
 
+<!-- ===========================
+      MAIN 3-COLUMN LAYOUT
+=========================== -->
 <div id="bb-layout">
 
 
 <!-- LEFT SIDEBAR -->
 <aside id="bb-left">
+
   <h3>Learning Series</h3>
 
   <b:section id='left-sidebar' showaddelement='yes'>
-    <b:widget id='SeriesNav' type='HTML' title='Series Navigation'>
-      <content>
-        <ul class="series-list">
-          <li class="series-title">Red Hat Series
-            <ul>
-              <li><a href="#">Introduction to Linux</a></li>
-              <li><a href="#">Kernel vs Shell</a></li>
-              <li><a href="#">RHCSA Modules</a></li>
-            </ul>
-          </li>
-
-          <li class="series-title">Cloud Basics
-            <ul>
-              <li><a href="#">What is Cloud?</a></li>
-              <li><a href="#">Types of Cloud</a></li>
-            </ul>
-          </li>
-
-        </ul>
-      </content>
-    </b:widget>
+    <b:widget id='SeriesNav' type='HTML'/>
   </b:section>
+
 </aside>
 
 
 
-<!-- ===========================
-     CENTER CONTENT AREA
-=========================== -->
-
+<!-- CENTER CONTENT -->
 <main id="bb-content">
 
   <div id="toc">
@@ -189,10 +190,7 @@ body {
 
 
 
-<!-- ===========================
-     RIGHT SIDEBAR
-=========================== -->
-
+<!-- RIGHT SIDEBAR -->
 <aside id="bb-right">
 
   <div class="profile-box">
@@ -212,164 +210,106 @@ body {
 
 </aside>
 
-</div> <!-- END bb-layout -->
+
+</div> <!-- END LAYOUT -->
+
+
+
 <!-- ===========================
-     GLOBAL SCRIPTS — TOC + SIDEBAR + SCROLL
+     SCRIPT SECTION
 =========================== -->
 
 <script>
-
-// ------------------------------
-// COLLAPSIBLE SIDEBAR
-// ------------------------------
+// Sidebar collapse
 document.addEventListener("DOMContentLoaded", function () {
-  const titles = document.querySelectorAll(".series-title");
-
-  titles.forEach(title => {
-    title.addEventListener("click", function () {
-      const content = this.querySelector("ul");
-      if (!content) return;
-
-      const isOpen = content.style.display === "block";
-
-      document.querySelectorAll(".series-list ul").forEach(u => {
-        u.style.display = "none";
-      });
-
-      content.style.display = isOpen ? "none" : "block";
+  document.querySelectorAll(".series-title").forEach(t => {
+    t.addEventListener("click", function () {
+      const ul = this.querySelector("ul");
+      if (!ul) return;
+      const state = ul.style.display === "block";
+      document.querySelectorAll(".series-list ul").forEach(x => x.style.display = "none");
+      ul.style.display = state ? "none" : "block";
     });
   });
 });
 
-
-// ------------------------------
-// AUTO TABLE OF CONTENTS
-// ------------------------------
+// Auto Table of Contents
 document.addEventListener("DOMContentLoaded", function () {
-  const contentArea = document.getElementById("bb-content");
-  const tocList = document.getElementById("toc-list");
+  const area = document.getElementById("bb-content");
+  const toc = document.getElementById("toc-list");
+  if (!area || !toc) return;
 
-  if (!contentArea || !tocList) return;
-
-  const headers = contentArea.querySelectorAll("h2, h3");
-
-  headers.forEach((header, index) => {
-    const id = "section-" + index;
-    header.setAttribute("id", id);
-
+  area.querySelectorAll("h2, h3").forEach((h, i) => {
+    const id = "sec-" + i;
+    h.setAttribute("id", id);
     const li = document.createElement("li");
-    li.style.marginLeft = header.tagName === "H3" ? "15px" : "0";
-
-    const a = document.createElement("a");
-    a.href = "#" + id;
-    a.textContent = header.textContent;
-
-    li.appendChild(a);
-    tocList.appendChild(li);
+    li.style.marginLeft = h.tagName === "H3" ? "20px" : "0";
+    li.innerHTML = `<a href="#${id}">${h.textContent}</a>`;
+    toc.appendChild(li);
   });
 });
 
-
-// ------------------------------
-// SMOOTH SCROLLING
-// ------------------------------
+// Smooth scroll
 document.addEventListener("click", function (e) {
   if (e.target.tagName.toLowerCase() === "a" && e.target.getAttribute("href").startsWith("#")) {
     e.preventDefault();
-    const target = document.querySelector(e.target.getAttribute("href"));
-
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 140,
-        behavior: "smooth"
-      });
-    }
+    const el = document.querySelector(e.target.getAttribute("href"));
+    if (el) window.scrollTo({ top: el.offsetTop - 140, behavior: "smooth" });
   }
 });
-
 </script>
 
 
-<!-- ===========================
-     DARK MODE TOGGLE BUTTON
-=========================== -->
-
+<!-- DARK MODE TOGGLE -->
 <div id="theme-toggle">Mode</div>
 
 <script>
-function loadTheme() {
-  const mode = localStorage.getItem("bb-theme") || "dark";
-  if (mode === "light") {
-    document.documentElement.classList.add("light");
-  }
-}
-
+function loadTheme(){ const m = localStorage.getItem("bb-theme") || "dark"; if(m==="light") document.documentElement.classList.add("light"); }
 document.getElementById("theme-toggle").onclick = function () {
   document.documentElement.classList.toggle("light");
-
-  if (document.documentElement.classList.contains("light")) {
-    localStorage.setItem("bb-theme", "light");
-  } else {
-    localStorage.setItem("bb-theme", "dark");
-  }
+  localStorage.setItem("bb-theme", document.documentElement.classList.contains("light") ? "light" : "dark");
 };
-
 loadTheme();
 </script>
 
 <style>
-  .light {
-    --bb-bg: #f6f7fb;
-    --bb-bg-light: #ffffff;
-    --bb-text: #2a2a2a;
-    --bb-heading: #111;
-    --bb-border: #ddd;
-    --bb-card: #ffffff;
-    --bb-tagline: #555;
-  }
+.light {
+  --bb-bg: #ffffff;
+  --bb-bg-light: #f1f1f1;
+  --bb-text: #222;
+  --bb-border: #ccc;
+  --bb-card: #fff;
+  --bb-heading: #000;
+}
 </style>
 
 
-<!-- ===========================
-     POST SIGNATURE INSERTION
-=========================== -->
-
+<!-- POST SIGNATURE -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const post = document.querySelector(".post-body");
-
-  if (!post) return;
-
+  const p = document.querySelector(".post-body");
+  if (!p) return;
   const sig = document.createElement("div");
-  sig.className = "signature-box";
-
   sig.innerHTML = `
     <div class="sig-title">BYTE2BUILD</div>
     <div class="sig-text">Learn one command, master one concept, grow one byte at a time.</div>
   `;
-
-  post.appendChild(sig);
+  p.appendChild(sig);
 });
 </script>
 
 
-<!-- ===========================
-     FOOTER
-=========================== -->
-
+<!-- FOOTER -->
 <footer style="text-align:center; padding:20px; margin-top:40px;">
-
-  <div style="font-size:16px; color:var(--bb-accent); font-weight:bold;">
-    BYTE2BUILD
-  </div>
-
-  <div style="color:var(--bb-tagline); font-size:14px; margin-top:4px;">
-    Learn one command, master one concept, grow one byte at a time.
-  </div>
-
+  <div style="font-size:16px; color:var(--bb-accent); font-weight:bold;">BYTE2BUILD</div>
+  <div style="color:var(--bb-tagline); margin-top:4px;">Learn one command, master one concept, grow one byte at a time.</div>
 </footer>
 
-</body>
-</html>
 
-  
+</body>
+</b:includable>
+
+
+
+</b:widgets>
+</b:template>
