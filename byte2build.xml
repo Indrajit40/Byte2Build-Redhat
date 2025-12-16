@@ -7,16 +7,24 @@
 
 <b:defaultwidgetversion>2</b:defaultwidgetversion>
 
-
 <!-- ===========================
-     TEMPLATE SKIN (CSS)
+     TEMPLATE SKIN (FULL CSS)
 =========================== -->
 <b:template-skin><![CDATA[
 
 /* ===========================================
-   BYTE2BUILD PREMIUM CUSTOM THEME (Dark Neon)
-===========================================*/
+   BYTE2BUILD PREMIUM THEME (Dark Neon v2)
+   Includes:
+   - Responsive Layout
+   - Animated Dropdown Menu
+   - Sticky TOC
+   - Reading Progress Bar
+   - Floating Dark Mode Button
+   - Author Box
+=========================================== */
 
+
+/* ---------- COLORS & VARIABLES ---------- */
 :root {
   --bb-bg: #0A0F1F;
   --bb-bg-light: #0D1224;
@@ -29,9 +37,12 @@
   --bb-tagline: #b7c4d9;
   --bb-font-heading: 'Poppins', sans-serif;
   --bb-font-body: 'Inter', sans-serif;
+
+  --bb-progress: #00A8FF;
 }
 
-/* RESET */
+
+/* ---------- GLOBAL RESET ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -43,9 +54,11 @@ body {
   color: var(--bb-text);
   font-family: var(--bb-font-body);
   line-height: 1.7;
+  padding-top: 150px;
 }
 
-/* HEADER */
+
+/* ---------- HEADER ---------- */
 header {
   width: 100%;
   background: var(--bb-bg-light);
@@ -67,19 +80,83 @@ header {
   margin-top: 5px;
 }
 
-/* NAVBAR */
-#navbar { text-align: center; margin-top: 10px; }
+
+/* ---------- SEARCH BAR ---------- */
+#search-box {
+  margin-top: 12px;
+  text-align: center;
+}
+
+#search-box input {
+  padding: 8px 12px;
+  width: 220px;
+  border-radius: 4px;
+  border: 1px solid var(--bb-border);
+  background: var(--bb-card);
+  color: var(--bb-text);
+}
+
+#search-box button {
+  padding: 8px 12px;
+  background: var(--bb-accent);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+
+/* ---------- NAVBAR + ANIMATED DROPDOWN ---------- */
+#navbar {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+
 #navbar a {
   color: var(--bb-text);
   margin: 0 15px;
   font-size: 14px;
   text-decoration: none;
+  transition: 0.3s ease;
 }
+
 #navbar a:hover { color: var(--bb-hover); }
 
-body { padding-top: 150px; }
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-/* LAYOUT */
+.dropdown-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 0.25s ease;
+  position: absolute;
+  background: var(--bb-card);
+  min-width: 170px;
+  border: 1px solid var(--bb-border);
+  border-radius: 6px;
+  padding: 10px 0;
+  z-index: 999;
+}
+
+.dropdown-content a {
+  padding: 8px 12px;
+  display: block;
+  color: var(--bb-text);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+
+/* ---------- MAIN LAYOUT ---------- */
 #bb-layout {
   display: flex;
   width: 100%;
@@ -88,45 +165,116 @@ body { padding-top: 150px; }
   gap: 20px;
 }
 
-/* LEFT SIDEBAR */
-#bb-left {
+#bb-left, #bb-right {
   width: 22%;
   background: var(--bb-card);
   padding: 15px;
   border-radius: 6px;
 }
 
-/* CENTER */
 #bb-content {
   width: 56%;
   padding: 20px;
 }
 
-/* RIGHT SIDEBAR */
-#bb-right {
-  width: 22%;
+
+/* ---------- STICKY TOC ---------- */
+#toc {
   background: var(--bb-card);
   padding: 15px;
   border-radius: 6px;
+  position: sticky;
+  top: 160px;
+  border: 1px solid var(--bb-border);
+}
+
+#toc h3 {
+  color: var(--bb-accent);
+  margin-bottom: 10px;
+}
+
+#toc-list li {
+  margin-bottom: 6px;
+}
+
+
+
+/* ---------- READING PROGRESS BAR ---------- */
+#bb-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+
+#bb-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--bb-progress);
+  transition: width 0.1s linear;
+}
+
+
+/* ---------- FLOATING DARK MODE BUTTON ---------- */
+#darkmode-floating {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--bb-accent);
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 99999;
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+
+/* ---------- AUTHOR BOX ---------- */
+.author-box {
+  margin-top: 35px;
+  padding: 20px;
+  background: var(--bb-card);
+  border: 1px solid var(--bb-border);
+  border-radius: 6px;
+}
+
+.author-box h3 {
+  color: var(--bb-accent);
+  margin-bottom: 10px;
+}
+
+
+/* ---------- MOBILE RESPONSIVE ---------- */
+@media (max-width: 900px) {
+  #bb-layout { flex-direction: column; }
+  #bb-left, #bb-right, #bb-content { width: 100%; }
+}
+
+@media (max-width: 600px) {
+  body { padding-top: 120px; }
+  #navbar { flex-wrap: wrap; }
+  #navbar a { padding: 6px 12px; }
 }
 
 ]]></b:template-skin>
-
-
-
-<!-- =========================================================
-     BLOGGER WIDGET SYSTEM
-========================================================= -->
 <b:widgets>
 
-
-
-<!-- =========================================================
-     MAIN PAGE RENDER BLOCK
-========================================================= -->
 <b:includable id='main'>
 <body>
 
+<!-- READING PROGRESS BAR -->
+<div id="bb-progress-bar">
+  <div id="bb-progress-fill"></div>
+</div>
 
 <!-- ===========================
      HEADER AREA
@@ -134,19 +282,53 @@ body { padding-top: 150px; }
 
 <header>
 
+  <!-- LOGO UPLOADER -->
   <div class="logo-area">
     <b:section id='header' showaddelement='yes'>
-      <b:widget id='Header1' type='Header'/>
+      <b:widget id='Header1' type='Header' version="2">
+        <b:includable id='main'>
+          <a expr:href="data:blog.homepageUrl">
+            <img expr:src="data:widget.logoUrl" alt="Byte2Build Logo"/>
+          </a>
+        </b:includable>
+      </b:widget>
     </b:section>
   </div>
 
-  <div class="tagline">Learn one command, master one concept, grow one byte at a time.</div>
+  <!-- TAGLINE -->
+  <div class="tagline">
+    Learn one command, master one concept, grow one byte at a time.
+  </div>
 
+  <!-- SEARCH BAR -->
+  <div id="search-box">
+    <form expr:action='data:blog.searchUrl'>
+      <input type="text" name="q" placeholder="Search Byte2Build..." />
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <!-- NAVBAR WITH ANIMATED DROPDOWN -->
   <div id="navbar">
     <a expr:href='data:blog.homepageUrl'>Home</a>
-    <a href="#">Red Hat Series</a>
-    <a href="#">Linux Basics</a>
-    <a href="#">Cloud</a>
+
+    <div class="dropdown">
+      <a href="#">Red Hat Series ▼</a>
+      <div class="dropdown-content">
+        <a href="#">Introduction to Linux</a>
+        <a href="#">Kernel vs Shell</a>
+        <a href="#">RHCSA Modules</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a href="#">Cloud ▼</a>
+      <div class="dropdown-content">
+        <a href="#">Cloud Basics</a>
+        <a href="#">Types of Cloud</a>
+      </div>
+    </div>
+
     <a href="#">DevOps</a>
     <a href="#">About</a>
   </div>
@@ -154,14 +336,14 @@ body { padding-top: 150px; }
 </header>
 
 
-
 <!-- ===========================
-      MAIN 3-COLUMN LAYOUT
+     MAIN 3‑COLUMN LAYOUT WRAPPER
 =========================== -->
+
 <div id="bb-layout">
-
-
-<!-- LEFT SIDEBAR -->
+<!-- ===========================
+     LEFT SIDEBAR
+=========================== -->
 <aside id="bb-left">
 
   <h3>Learning Series</h3>
@@ -174,14 +356,19 @@ body { padding-top: 150px; }
 
 
 
-<!-- CENTER CONTENT -->
+<!-- ===========================
+     CENTER CONTENT AREA
+=========================== -->
+
 <main id="bb-content">
 
+  <!-- Sticky TOC -->
   <div id="toc">
     <h3>Table of Contents</h3>
     <ul id="toc-list"></ul>
   </div>
 
+  <!-- Blog Posts -->
   <b:section id='main' showaddelement='yes'>
     <b:widget id='Blog1' type='Blog'/>
   </b:section>
@@ -190,7 +377,10 @@ body { padding-top: 150px; }
 
 
 
-<!-- RIGHT SIDEBAR -->
+<!-- ===========================
+     RIGHT SIDEBAR
+=========================== -->
+
 <aside id="bb-right">
 
   <div class="profile-box">
@@ -211,105 +401,153 @@ body { padding-top: 150px; }
 </aside>
 
 
-</div> <!-- END LAYOUT -->
+</div> <!-- END #bb-layout -->
 
 
 
 <!-- ===========================
-     SCRIPT SECTION
+     AUTHOR BOX (AUTO APPENDED)
 =========================== -->
 
 <script>
-// Sidebar collapse
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".series-title").forEach(t => {
-    t.addEventListener("click", function () {
-      const ul = this.querySelector("ul");
-      if (!ul) return;
-      const state = ul.style.display === "block";
-      document.querySelectorAll(".series-list ul").forEach(x => x.style.display = "none");
-      ul.style.display = state ? "none" : "block";
+  const post = document.querySelector(".post-body");
+  if (!post) return;
+
+  const box = document.createElement("div");
+  box.className = "author-box";
+  box.innerHTML = `
+    <h3>Author • Byte2Build</h3>
+    <p>Learn one command, master one concept, grow one byte at a time.</p>
+  `;
+  post.appendChild(box);
+});
+</script>
+<!-- ===========================
+     GLOBAL JAVASCRIPT ENGINE
+=========================== -->
+
+<script>
+
+// ------------------------------
+// STICKY SIDEBAR COLLAPSE
+// ------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const titles = document.querySelectorAll(".series-title");
+
+  titles.forEach(title => {
+    title.addEventListener("click", function () {
+      const content = this.querySelector("ul");
+      if (!content) return;
+
+      const isOpen = content.style.display === "block";
+
+      document.querySelectorAll(".series-list ul").forEach(u => {
+        u.style.display = "none";
+      });
+
+      content.style.display = isOpen ? "none" : "block";
     });
   });
 });
 
-// Auto Table of Contents
-document.addEventListener("DOMContentLoaded", function () {
-  const area = document.getElementById("bb-content");
-  const toc = document.getElementById("toc-list");
-  if (!area || !toc) return;
 
-  area.querySelectorAll("h2, h3").forEach((h, i) => {
-    const id = "sec-" + i;
-    h.setAttribute("id", id);
+// ------------------------------
+// AUTO TABLE OF CONTENTS ENGINE
+// ------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const content = document.getElementById("bb-content");
+  const tocList = document.getElementById("toc-list");
+  if (!content || !tocList) return;
+
+  const headers = content.querySelectorAll("h2, h3");
+
+  headers.forEach((header, index) => {
+    const id = "section-" + index;
+    header.setAttribute("id", id);
+
     const li = document.createElement("li");
-    li.style.marginLeft = h.tagName === "H3" ? "20px" : "0";
-    li.innerHTML = `<a href="#${id}">${h.textContent}</a>`;
-    toc.appendChild(li);
+    li.style.marginLeft = header.tagName === "H3" ? "15px" : "0";
+    li.innerHTML = `<a href="#${id}">${header.textContent}</a>`;
+
+    tocList.appendChild(li);
   });
 });
 
-// Smooth scroll
+
+// ------------------------------
+// SMOOTH SCROLLING ENGINE
+// ------------------------------
 document.addEventListener("click", function (e) {
-  if (e.target.tagName.toLowerCase() === "a" && e.target.getAttribute("href").startsWith("#")) {
-    e.preventDefault();
-    const el = document.querySelector(e.target.getAttribute("href"));
-    if (el) window.scrollTo({ top: el.offsetTop - 140, behavior: "smooth" });
+  const link = e.target.closest("a");
+  if (!link) return;
+
+  const href = link.getAttribute("href");
+  if (!href || !href.startsWith("#")) return;
+
+  e.preventDefault();
+  const target = document.querySelector(href);
+
+  if (target) {
+    window.scrollTo({
+      top: target.offsetTop - 140,
+      behavior: "smooth"
+    });
   }
 });
-</script>
 
 
-<!-- DARK MODE TOGGLE -->
-<div id="theme-toggle">Mode</div>
-
-<script>
-function loadTheme(){ const m = localStorage.getItem("bb-theme") || "dark"; if(m==="light") document.documentElement.classList.add("light"); }
-document.getElementById("theme-toggle").onclick = function () {
-  document.documentElement.classList.toggle("light");
-  localStorage.setItem("bb-theme", document.documentElement.classList.contains("light") ? "light" : "dark");
-};
-loadTheme();
-</script>
-
-<style>
-.light {
-  --bb-bg: #ffffff;
-  --bb-bg-light: #f1f1f1;
-  --bb-text: #222;
-  --bb-border: #ccc;
-  --bb-card: #fff;
-  --bb-heading: #000;
-}
-</style>
-
-
-<!-- POST SIGNATURE -->
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const p = document.querySelector(".post-body");
-  if (!p) return;
-  const sig = document.createElement("div");
-  sig.innerHTML = `
-    <div class="sig-title">BYTE2BUILD</div>
-    <div class="sig-text">Learn one command, master one concept, grow one byte at a time.</div>
-  `;
-  p.appendChild(sig);
+// ------------------------------
+// READING PROGRESS BAR ENGINE
+// ------------------------------
+window.addEventListener("scroll", function () {
+  const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrolled = (window.scrollY / pageHeight) * 100;
+  document.getElementById("bb-progress-fill").style.width = scrolled + "%";
 });
+
+
+// ------------------------------
+// FLOATING DARK MODE BUTTON ENGINE
+// ------------------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.createElement("div");
+  btn.id = "darkmode-floating";
+  btn.innerHTML = "🌙";
+  document.body.appendChild(btn);
+
+  btn.onclick = () => {
+    document.documentElement.classList.toggle("light");
+    localStorage.setItem(
+      "bb-theme",
+      document.documentElement.classList.contains("light") ? "light" : "dark"
+    );
+  };
+
+  // Load saved theme
+  const mode = localStorage.getItem("bb-theme");
+  if (mode === "light") {
+    document.documentElement.classList.add("light");
+  }
+});
+
 </script>
+<!-- ===========================
+     FOOTER
+=========================== -->
 
-
-<!-- FOOTER -->
 <footer style="text-align:center; padding:20px; margin-top:40px;">
-  <div style="font-size:16px; color:var(--bb-accent); font-weight:bold;">BYTE2BUILD</div>
-  <div style="color:var(--bb-tagline); margin-top:4px;">Learn one command, master one concept, grow one byte at a time.</div>
+  <div style="font-size:16px; color:var(--bb-accent); font-weight:bold;">
+    BYTE2BUILD
+  </div>
+  <div style="color:var(--bb-tagline); margin-top:4px; font-size:14px;">
+    Learn one command, master one concept, grow one byte at a time.
+  </div>
 </footer>
 
 
 </body>
 </b:includable>
-
-
 
 </b:widgets>
 </b:template>
