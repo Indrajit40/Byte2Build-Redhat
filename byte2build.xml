@@ -384,7 +384,7 @@ header {
 <aside id="bb-right">
 
   <div class="profile-box">
-    <img src="https://via.placeholder.com/120" alt="Profile">
+    <img src="https://via.placeholder.com/120" alt="Profile" />
     <div class="name">Byte2Build</div>
     <div class="bio">Learn one command, master one concept, grow one byte at a time.</div>
   </div>
