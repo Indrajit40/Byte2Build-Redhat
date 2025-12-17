@@ -17,7 +17,6 @@
         --text-secondary: #475569;
         --border-color: #e2e8f0;
       }
-      /* Sticky Footer Logic */
       html, body { height: 100%; margin: 0; }
       body { display: flex; flex-direction: column; background: var(--body-bg); color: var(--text-primary); font-family: 'Inter', sans-serif; line-height: 1.6; }
       
@@ -35,31 +34,40 @@
       .journey-link { text-decoration:none; color:var(--text-secondary); display:block; padding:10px 0; border-bottom:1px solid var(--border-color); font-size:14px; }
       .post-stats { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border-color); color: #94a3b8; font-size: 11px; }
       
-      /* Home Symbol Styling */
-      .home-icon-btn { text-decoration: none; color: var(--brand-blue); font-size: 28px; line-height: 1; border: 2px solid var(--brand-blue); width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; }
+      .home-icon-btn { background: #f1f5f9; border: 1px solid #e2e8f0; width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #475569; text-decoration: none; transition: 0.3s; }
       .home-icon-btn:hover { background: var(--brand-blue); color: #fff; }
+
+      .floating-home { position: fixed; bottom: 30px; right: 30px; background: var(--brand-blue); color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); z-index: 999; text-decoration: none; }
 
       .share-link { font-size: 11px; color: var(--brand-blue); text-decoration: none; margin-right: 12px; font-weight: 700; text-transform: uppercase; }
 
-      /* Fixed Footer at the end */
-      .simple-footer { background: var(--deep-navy); color: #94a3b8; text-align: center; padding: 20px; font-size: 13px; flex-shrink: 0; margin-top: 40px; }
-      .simple-footer a { color: #fff; text-decoration: none; margin-left: 10px; }
+      .simple-footer { background: var(--deep-navy); color: #64748b; padding: 25px 20px; margin-top: 50px; text-align: center; font-size: 13px; flex-shrink: 0; }
+      .footer-content a { color: #94a3b8; text-decoration: none; }
 
-      @media (max-width: 1150px) { .main-grid { grid-template-columns: 1fr; } }
+      @media (max-width: 1150px) { .main-grid { grid-template-columns: 1fr; } .floating-home { display: flex; } }
     ]]></b:skin>
   </head>
 
   <body>
-
     <header class='premium-header'>
       <h1 class='logo-text'><a expr:href='data:blog.homepageUrl'>Byte2Build</a></h1>
-      <p style='color: #94a3b8; margin-top: 10px;'>Mastering Technology Byte by Byte</p>
+      <p style='color: #94a3b8; font-size: 14px; margin-top: 10px; font-weight: 500;'>
+        Learn one command &#8226; Master one concept &#8226; Grow one byte at a time
+      </p>
     </header>
 
     <div class='main-grid'>
-
       <aside>
         <div class='sidebar-card'>
+          <div class='nav-hub' style='display: flex; align-items: center; gap: 10px; margin-bottom: 20px;'>
+            <a class='home-icon-btn' href='/' title='Home'>
+              <svg style='width:20px;height:20px;fill:currentColor' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/></svg>
+            </a>
+            <form action='/search' method='get' style='position: relative; flex-grow: 1;'>
+              <input name='q' placeholder='Search...' style='width: 100%; padding: 10px 12px; border-radius: 8px; background: #f1f5f9; border: 1px solid #e2e8f0; outline: none; box-sizing: border-box; font-size: 14px;' type='text'/>
+            </form>
+          </div>
+
           <h4 style='font-size:11px; text-transform:uppercase; color:var(--brand-blue); margin-bottom:10px; letter-spacing:1px;'>Learning Journey</h4>
           <b:section id='sidebar-left' showaddelement='yes'>
             <b:widget id='LinkList1' locked='false' title='Journey' type='LinkList' version='2' visible='true'>
@@ -77,15 +85,12 @@
         <b:section id='main-content' showaddelement='yes'>
           <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2' visible='true'>
             <b:includable id='main'>
-              
               <div class='post-column-wrapper'>
                 <b:loop values='data:posts' var='post'>
                   <b:if cond='data:view.isPost'>
                     <article class='full-post-card'>
                       <h2 style='color:var(--brand-blue); font-size:26px; margin-bottom:12px;'><data:post.title/></h2>
-                      <div class='post-body' style='font-size:16px; line-height:1.7;'>
-                        <data:post.body/>
-                      </div>
+                      <div class='post-body' style='font-size:16px; line-height:1.7;'><data:post.body/></div>
                       <div style='margin-top:25px; padding:12px 0; border-top:1px dashed var(--border-color);'>
                         <span style='font-size:11px; font-weight:800; color:var(--text-secondary); margin-right:10px;'>SHARE:</span>
                         <a class='share-link' expr:href='&quot;https://www.facebook.com/sharer.php?u=&quot; + data:post.url' target='_blank'>Facebook</a>
@@ -103,9 +108,7 @@
                       <div style='color:var(--text-secondary); margin-bottom:12px; font-size:13px; display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical; overflow:hidden;'>
                         <data:post.snippet/>
                       </div>
-                      <a expr:href='data:post.url' style='font-weight:800; color:var(--brand-blue); text-decoration:none; text-transform:uppercase; font-size:10px; letter-spacing:1px;'>
-                        Explore Concept &#10230;
-                      </a>
+                      <a expr:href='data:post.url' style='font-weight:800; color:var(--brand-blue); text-decoration:none; text-transform:uppercase; font-size:10px; letter-spacing:1px;'>Explore Concept &#10230;</a>
                       <div class='post-stats'>
                         <span><data:post.viewCount/> Views</span>
                         <a expr:href='data:post.url + &quot;#comments&quot;' style='text-decoration:none; color:inherit;'>Chat (<data:post.numberOfComments/>)</a>
@@ -115,16 +118,9 @@
                   </b:if>
                 </b:loop>
               </div>
-
-              <div style='display:flex; justify-content:flex-end; margin-top: 20px; margin-bottom: 40px;'>
-                <a class='home-icon-btn' expr:href='data:blog.homepageUrl' title='Home'>&#8962;</a>
-              </div>
             </b:includable>
-
             <b:includable id='commentPicker' var='post'>
-              <b:if cond='data:post.allowComments'>
-                <b:include data='post' name='threadedComments'/>
-              </b:if>
+              <b:if cond='data:post.allowComments'><b:include data='post' name='threadedComments'/></b:if>
             </b:includable>
             <b:includable id='threadedComments' var='post'>
               <section class='comments threaded' id='comments'>
@@ -140,23 +136,49 @@
 
       <aside>
         <b:section id='sidebar-right' showaddelement='yes'>
+          <b:widget id='HTML999' locked='false' title='Our Vision' type='HTML' version='2' visible='true'>
+            <b:includable id='main'>
+              <div class='sidebar-card' style='border-left:4px solid var(--brand-blue); padding-left:15px;'>
+                <span style='font-size:10px; font-weight:800; color:var(--brand-blue); text-transform:uppercase;'>About Us</span>
+                <h3 style='margin:8px 0; font-size:18px;'>Byte2Build Vision</h3>
+                <p style='font-size:13.5px; color:var(--text-secondary); line-height:1.6;'>
+                  A dedicated initiative bridging the gap between theory and industry. We focus on hands-on expertise in <strong>Linux, Cloud &amp; DevOps, and AI</strong>.
+                </p>
+              </div>
+            </b:includable>
+          </b:widget>
+
           <b:widget id='HTML102' locked='false' title='Founder' type='HTML' version='2' visible='true'>
             <b:includable id='main'>
               <div class='sidebar-card' style='text-align:center;'>
-                <img alt='Indrajit' src='https://media.licdn.com/dms/image/v2/D5603AQHdGdtmVVwStQ/profile-displayphoto-shrink_400_400/B56ZQ7xe8DHoAg-/0/1736169616600?e=1767225600&amp;v=beta&amp;t=0uSxaV5OmJtmitb_1LLuaPvgPCQy16kdPVjM1qNJ7_g' style='width:80px; height:80px; border-radius:50%; border:3px solid var(--border-color); margin-bottom:12px;'/>
-                <h4 style='margin:0; font-size:16px;'>Indrajit Ghosh</h4>
-                <div style='font-size:9px; font-weight:800; color:var(--brand-blue); margin-top:4px;'>CO-FOUNDER BYTE2BUILD</div>
+                <img alt='Indrajit Ghosh' src='https://media.licdn.com/dms/image/v2/D5603AQHdGdtmVVwStQ/profile-displayphoto-shrink_400_400/B56ZQ7xe8DHoAg-/0/1736169616600?e=1767225600&amp;v=beta&amp;t=0uSxaV5OmJtmitb_1LLuaPvgPCQy16kdPVjM1qNJ7_g' style='width:100px; height:100px; border-radius:50%; border:2px solid var(--border-color); padding:4px; object-fit:cover;'/>
+                <h3 style='margin:12px 0 2px; font-size:18px;'>Indrajit Ghosh</h3>
+                <div style='display: inline-block; background: rgba(37, 99, 235, 0.1); color: var(--brand-blue); font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; margin-top: 8px;'>Co-Founder Byte2Build</div>
+                <div style='display: flex; gap: 15px; justify-content: center; margin-top: 15px;'>
+                  <a href='https://www.linkedin.com/in/indrajitghosh-byte2build' target='_blank' title='LinkedIn'><svg style='width:20px;height:20px;fill:#94a3b8' viewBox='0 0 24 24'><path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'/></svg></a>
+                  <a href='https://github.com/indrajitghosh-byte2build' target='_blank' title='GitHub'><svg style='width:20px;height:20px;fill:#94a3b8' viewBox='0 0 24 24'><path d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/></svg></a>
+                </div>
               </div>
             </b:includable>
           </b:widget>
         </b:section>
       </aside>
-
     </div>
 
-    <footer class='simple-footer'>
-      <span>&#169; 2025 Byte2Build | <a href='https://www.linkedin.com/company/Byte2build' target='_blank'>LinkedIn</a></span>
-    </footer>
+    <a class='floating-home' href='/' title='Back to Home'>
+      <svg style='width:24px;height:24px;fill:currentColor' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/></svg>
+    </a>
 
+    <footer class='simple-footer'>
+      <div class='footer-content'>
+        <span>&#169; 2025 Byte2Build</span>
+        <span> &#8226; </span>
+        <a href='mailto:byte2build.tech@gmail.com'>Contact Support</a>
+        <span> &#8226; </span>
+        <a href='https://www.linkedin.com/company/Byte2build' target='_blank'>Company LinkedIn</a>
+        <span> &#8226; </span>
+        <span style='color: var(--brand-blue); font-weight: 600;'>Linux &#8226; Cloud &amp; DevOps &#8226; AI</span>
+      </div>
+    </footer>
   </body>
 </html>
