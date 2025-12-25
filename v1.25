@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta content='width=device-width,initial-scale=1' name='viewport'/>
+    <title><data:blog.pageTitle/></title>
+    <b:include data='blog' name='all-head-content'/>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
+
+    <b:skin><![CDATA[
+      :root {
+        --brand-blue: #2563eb;
+        --deep-navy: #020617;
+        --body-bg: #f8fafc;
+        --card-bg: #ffffff;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --border-color: #e2e8f0;
+      }
+      html, body { height: 100%; margin: 0; padding: 0; }
+      body { display: flex; flex-direction: column; background: var(--body-bg); color: var(--text-primary); font-family: 'Inter', sans-serif; line-height: 1.6; }
+      
+      .premium-header { width: 100%; height: 220px; background: var(--deep-navy); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; }
+      .logo-text a { color: #fff; text-decoration: none; font-size: 42px; font-weight: 900; letter-spacing: 6px; text-transform: uppercase; display: flex; align-items: center; gap: 20px; }
+      
+      .main-grid { 
+        display: grid; 
+        grid-template-columns: 280px 1fr 320px; 
+        gap: 30px; 
+        max-width: 98%; 
+        margin: 0 auto; 
+        padding: 30px 15px; 
+        flex: 1; 
+      }
+      
+      .sidebar-card, .topic-card, .full-post-card { 
+        background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; 
+        padding: 35px; margin-bottom: 25px; 
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .topic-card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -5px rgb(0 0 0 / 0.1); }
+
+      /* AUTO-PAGINATION STYLING */
+      .post-pagination-wrap { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 2px dashed var(--border-color); }
+      .pg-btn { background: var(--brand-blue); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 800; font-size: 12px; cursor: pointer; transition: 0.3s; }
+      .pg-btn:disabled { background: #e2e8f0; color: #94a3b8; cursor: not-allowed; }
+      .pg-info { font-size: 13px; font-weight: 600; color: var(--text-secondary); }
+
+      .journey-link { text-decoration:none; color:var(--text-secondary); display:block; padding:10px 0; border-bottom:1px solid var(--border-color); font-size:14px; font-weight: 500; }
+      .journey-link:hover { color: var(--brand-blue); }
+      .home-icon-btn { background: #f1f5f9; border: 1px solid #e2e8f0; width: 42px; height: 42px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #475569; text-decoration: none; transition: 0.3s; }
+      .home-icon-btn:hover { background: var(--brand-blue); color: #fff; }
+      .learn-link { font-weight: 800; color: var(--brand-blue); text-decoration: none; font-size: 13px; letter-spacing: 1.2px; display: flex; align-items: center; gap: 6px; transition: 0.3s ease; }
+      .learn-link:hover { gap: 10px; color: var(--deep-navy); }
+
+      @media (max-width: 1150px) { .main-grid { grid-template-columns: 1fr; } }
+    ]]></b:skin>
+  </head>
+
+  <body>
+    <header class='premium-header'>
+      <h1 class='logo-text'>
+        <a expr:href='data:blog.homepageUrl'>
+          <img alt='Logo' src='https://raw.githubusercontent.com/Indrajit40/Byte2Build-Redhat/main/log1.jpg' style='height: 60px; width: auto; border-radius: 6px;'/>
+          Byte2Build
+        </a>
+      </h1>
+      <p style='color: #94a3b8; font-size: 14px; margin-top: 10px; font-weight: 500;'>Learn one command &#8226; Master one concept &#8226; Grow one byte at a time</p>
+    </header>
+
+    <div class='main-grid'>
+      <aside>
+        <div class='sidebar-card' style='padding: 20px;'>
+          <div class='nav-hub' style='display: flex; align-items: center; gap: 10px; margin-bottom: 20px;'>
+            <a class='home-icon-btn' expr:href='data:blog.homepageUrl' title='Home'>
+              <svg style='width:20px;height:20px;fill:currentColor' viewBox='0 0 24 24'><path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/></svg>
+            </a>
+            <form action='/search' method='get' style='flex-grow: 1;'>
+              <input name='q' placeholder='Search concepts...' style='width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0; font-size: 13px;' type='text'/>
+            </form>
+          </div>
+          <h4 style='font-size:11px; text-transform:uppercase; color:var(--brand-blue); letter-spacing:1px; margin-bottom:10px;'>Learning Journey</h4>
+          <b:section id='sidebar-left' showaddelement='yes'>
+            <b:widget id='LinkList1' type='LinkList' version='2'>
+              <b:includable id='main'>
+                <b:loop values='data:links' var='link'>
+                  <a class='journey-link' expr:href='data:link.target'><data:link.name/></a>
+                </b:loop>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </aside>
+
+      <main>
+        <b:section id='main-content'>
+          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2'>
+            <b:includable id='main'>
+              <b:loop values='data:posts' var='post'>
+                <b:if cond='data:view.isPost'>
+                  <article class='full-post-card'>
+                    <h2 style='color:var(--brand-blue); font-size:36px; font-weight:900; line-height:1.2; margin-bottom:20px;'><data:post.title/></h2>
+                    
+                    <div class='post-body' id='post-body-content' style='font-size:18px; line-height:1.8; color:var(--text-primary);'>
+                      <data:post.body/>
+                    </div>
+
+                    <div class='post-pagination-wrap' id='post-pagination' style='display:none;'>
+                      <button class='pg-btn' id='prevBtn' onclick='prevPage()'>&#171; PREVIOUS</button>
+                      <span class='pg-info' id='pageInfo'>Page 1 of 1</span>
+                      <button class='pg-btn' id='nextBtn' onclick='nextPage()'>NEXT &#187;</button>
+                    </div>
+                  </article>
+                <b:else/>
+                  <article class='topic-card'>
+                    <h2 style='margin-bottom:18px;'>
+                      <a expr:href='data:post.url' style='text-decoration:none; color:var(--brand-blue); font-size:30px; font-weight:900; line-height:1.2; display:block;'><data:post.title/></a>
+                    </h2>
+                    <div style='background: #f8fafc; padding: 22px; border-radius: 12px; border-left: 4px solid var(--brand-blue); margin-bottom: 25px;'>
+                      <div style='color:var(--text-secondary); font-size:15px; display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical; overflow:hidden; line-height:1.7;'>
+                        <b:eval expr='data:post.snippet ?: data:post.body'/>
+                      </div>
+                    </div>
+                    <a class='learn-link' expr:href='data:post.url'>LET&#39;S LEARN <svg style='width:18px;height:18px;fill:currentColor' viewBox='0 0 24 24'><path d='M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z'/></svg></a>
+                  </article>
+                </b:if>
+              </b:loop>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </main>
+
+      <aside>
+        <div class='sidebar-card' style='border-left:4px solid var(--brand-blue); padding: 25px;'>
+          <span style='font-size:10px; font-weight:800; color:var(--brand-blue); text-transform:uppercase; letter-spacing:1px;'>The Vision</span>
+          <h3 style='margin:8px 0; font-size:18px; font-weight:800;'>Byte2Build Path</h3>
+          <p style='font-size:13px; color:var(--text-secondary); line-height:1.5;'>Specialized engineering paths in Linux, Cloud &amp; AI infrastructure.</p>
+        </div>
+        <div class='sidebar-card' style='text-align:center;'>
+          <img alt='Indrajit Ghosh' src='https://media.licdn.com/dms/image/v2/D5603AQHdGdtmVVwStQ/profile-displayphoto-shrink_400_400/B56ZQ7xe8DHoAg-/0/1736169616600?e=1767225600&amp;v=beta&amp;t=0uSxaV5OmJtmitb_1LLuaPvgPCQy16kdPVjM1qNJ7_g' style='width:90px; height:90px; border-radius:50%; border:2px solid var(--brand-blue); padding:3px; object-fit:cover;'/>
+          <h3 style='margin:15px 0 5px; font-size:18px; font-weight:800;'>Indrajit Ghosh</h3>
+          <div style='display: inline-block; border: 1px solid var(--brand-blue); padding: 2px 10px; border-radius: 4px; margin-bottom: 15px;'>
+            <span style='font-size:9px; font-weight:800; color:var(--brand-blue); text-transform:uppercase;'>Co-Founder Byte2Build</span>
+          </div>
+          <div style='display: flex; gap: 18px; justify-content: center;'>
+            <a href='https://www.linkedin.com/in/indrajitghosh-byte2build' target='_blank'><svg style='width:20px;height:20px;fill:#94a3b8' viewBox='0 0 24 24'><path d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'/></svg></a>
+            <a href='https://github.com/indrajitghosh-byte2build' target='_blank'><svg style='width:20px;height:20px;fill:#94a3b8' viewBox='0 0 24 24'><path d='M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.042-1.416-4.042-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'/></svg></a>
+            <a href='https://www.youtube.com/@Byte2Build' target='_blank'><svg style='width:20px;height:20px;fill:#94a3b8' viewBox='0 0 24 24'><path d='M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z'/></svg></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <footer style='background: #020617; border-top: 1px solid #1e293b; padding: 25px 0; margin-top: auto;'>
+      <div style='max-width: 1800px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between;'>
+        <div style='display: flex; align-items: center; gap: 20px;'>
+          <img alt='Logo' src='https://raw.githubusercontent.com/Indrajit40/Byte2Build-Redhat/main/log1.jpg' style='height: 28px; width: auto; border-radius: 4px;'/>
+          <a href='https://www.linkedin.com/company/byte2build' style='color: #f8fafc; text-decoration: none; font-weight: 800; font-size: 14px; letter-spacing: 2px;'>BYTE2BUILD</a>
+          <span style='color: #64748b; font-size: 11px;'>&#169; 2025</span>
+        </div>
+        <div style='display: flex; align-items: center; gap: 20px;'>
+          <div style='width: 8px; height: 8px; background: #22c55e; border-radius: 50%;'></div>
+          <span style='color: #94a3b8; font-size: 10px; font-weight: 800;'>SYSTEMS ONLINE</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+    //<![CDATA[
+      let currentPage = 0;
+      let pages = [];
+
+      function splitPost() {
+        const body = document.getElementById('post-body-content');
+        if (!body) return;
+
+        const words = body.innerHTML.split(' ');
+        if (words.length < 500) return; // Don't split if short
+
+        const chunkSize = 500;
+        let htmlBuffer = "";
+        let wordCount = 0;
+        
+        // Hide original content
+        const originalContent = body.innerHTML;
+        body.innerHTML = "";
+        
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = originalContent;
+        const nodes = Array.from(tempDiv.childNodes);
+        
+        let currentChunk = document.createElement('div');
+        currentChunk.className = 'post-page-segment';
+        currentChunk.style.display = 'none';
+        
+        let count = 0;
+        nodes.forEach(node => {
+          currentChunk.appendChild(node.cloneNode(true));
+          count += (node.textContent || "").split(/\s+/).length;
+          
+          if (count >= chunkSize) {
+            pages.push(currentChunk);
+            currentChunk = document.createElement('div');
+            currentChunk.className = 'post-page-segment';
+            currentChunk.style.display = 'none';
+            count = 0;
+          }
+        });
+        
+        if (currentChunk.childNodes.length > 0) pages.push(currentChunk);
+
+        // Add pages back to body
+        pages.forEach(p => body.appendChild(p));
+        
+        // Show navigation
+        if (pages.length > 1) {
+          document.getElementById('post-pagination').style.display = 'flex';
+          showPage(0);
+        } else {
+          if(pages[0]) pages[0].style.display = 'block';
+        }
+      }
+
+      function showPage(index) {
+        pages.forEach((p, i) => p.style.display = (i === index) ? 'block' : 'none');
+        currentPage = index;
+        document.getElementById('pageInfo').innerText = "Page " + (index + 1) + " of " + pages.length;
+        document.getElementById('prevBtn').disabled = (index === 0);
+        document.getElementById('nextBtn').disabled = (index === pages.length - 1);
+        window.scrollTo({top: document.querySelector('.full-post-card').offsetTop - 20, behavior: 'smooth'});
+      }
+
+      function nextPage() { if (currentPage < pages.length - 1) showPage(currentPage + 1); }
+      function prevPage() { if (currentPage > 0) showPage(currentPage - 1); }
+
+      // Run on load
+      window.onload = splitPost;
+    //]]>
+    </script>
+  </body>
+</html>
