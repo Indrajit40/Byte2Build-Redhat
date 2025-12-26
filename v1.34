@@ -520,22 +520,45 @@ html {
 /* Sidebar Widths on Edges */
 #sidebar-left { flex: 0 0 260px !important; order: -1; }
 #sidebar-right { flex: 0 0 280px !important; order: 1; }
+/* FORCE CONTENT TO MOVE UP - 1 LINE BELOW HEADER */
+
+/* Remove all theme-default gaps */
+#main-wrapper, .main-outer, .content-inner, .main-cap-top, #content, .region-inner {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    top: 0 !important;
+}
+
+/* Create exactly 1 line of space below the header container */
+.main-outer {
+    margin-top: 20px !important; /* This is your 1-line gap */
+}
+
+/* Force expansion to screen edges */
+.content-outer, .content-inner, .columns {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Middle Content Expand */
+#main {
+    flex: 1 !important;
+    padding: 0 40px !important;
+}
     ]]></b:skin>
     
   </head>
 
   <body>
-<div id='custom-header' style='background: #FFFFFF; border-bottom: 1px solid #EEEEEE; width: 100%; padding: 20px 0; margin: 0; display: block; position: relative;'>
-  <div style='max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: center;'>
-    
-    <a expr:href='data:blog.homepageUrl' style='display: block;'>
-      <img alt='BYTE2BUILD' src='https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true' style='height: 110px !important; width: auto !important; display: block;'/>
-    </a>
+<div id='header-container' style='background: #FFFFFF; border-bottom: 1px solid #F0F0F0; width: 100%; height: 130px; display: flex; align-items: center; justify-content: center; position: relative; z-index: 999;'>
+  
+  <a expr:href='data:blog.homepageUrl'>
+    <img alt='BYTE2BUILD' src='https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true' style='height: 110px !important; width: auto; display: block;'/>
+  </a>
 
-    <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background:none; border:none; cursor:pointer; font-size:28px; position: absolute; right: 30px;'>
-      🌓
-    </button>
-  </div>
+  <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background:none; border:none; cursor:pointer; font-size:28px; position: absolute; right: 30px;'>🌓</button>
 </div>
 
 
