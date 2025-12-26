@@ -369,14 +369,9 @@ html {
     </a>
   </div>
 
-  <div class='header-right' style='display: flex; align-items: center; gap: 20px;'>
-  
-  <div id='dynamic-topics' style='display: flex; gap: 15px; align-items: center;'>
-      </div>
-  
-  <button class='theme-toggle-btn' onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' title='Toggle Mode'>
-    🌓
-  </button>
+ <div class='header-right'>
+  <div id='dynamic-topics' style='display: flex; gap: 15px;'/>
+  <button class='theme-toggle-btn' onclick='document.body.classList.toggle(&quot;dark-mode&quot;)'>🌓</button>
 </div>
 </header>
 
@@ -1027,52 +1022,38 @@ buildJourneyMenu();
 window.addEventListener('load', buildJourneyMenu);
 //]]>
 </script>
- <script type='text/javascript'>
+<script type='text/javascript'>
 //<![CDATA[
 (function() {
     var target = document.getElementById("dynamic-topics");
     if (!target) return;
 
-    // 1. IMMEDIATE SAFETY NET: Show these immediately
-    var fallbackTopics = ["RHCSA", "LINUX"];
-    function showFallback() {
-        target.innerHTML = ""; // Clear
-        fallbackTopics.forEach(function(word) {
-            var a = document.createElement("a");
-            a.href = "#main-container";
-            a.className = "dynamic-link";
-            a.style.cssText = "color:inherit; text-decoration:none; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:1px;";
-            a.innerText = word;
-            target.appendChild(a);
-        });
-    }
-    showFallback(); // Run instantly
-
-    // 2. SMART SYNC: Try to find actual sidebar labels for 5 seconds
-    var checkCount = 0;
-    var syncInterval = setInterval(function() {
-        checkCount++;
-        // Looking for Blogger's specific label classes
-        var labels = document.querySelectorAll(".label-name, .Label a, .cloud-label-widget-content a");
+    // This "Watcher" looks at your sidebar every 500ms
+    var autoSync = setInterval(function() {
+        // It looks for the actual labels you have in your sidebar
+        var sidebarLabels = document.querySelectorAll(".label-name, .Label a");
         
-        if (labels.length > 0) {
-            target.innerHTML = ""; // Replace safety net with real data
-            for (var i = 0; i < 2 && i < labels.length; i++) {
-                var text = labels[i].innerText.replace(/\(\d+\)/g, "").trim();
-                var word = text.split(" ")[0].toUpperCase();
+        if (sidebarLabels.length > 0) {
+            target.innerHTML = ""; // Clear the area
+            
+            // It takes the first 2 topics found in your sidebar
+            for (var i = 0; i < 2 && i < sidebarLabels.length; i++) {
+                var originalText = sidebarLabels[i].innerText || sidebarLabels[i].textContent;
+                // Remove numbers like (1) and take only the first word
+                var cleanWord = originalText.replace(/\(\d+\)/g, "").trim().split(" ")[0].toUpperCase();
                 
                 var a = document.createElement("a");
-                a.href = "#main-container";
+                // LINK STATUS: This targets the Blogger main content area
+                a.href = "#main"; 
                 a.className = "dynamic-link";
-                a.style.cssText = "color:inherit; text-decoration:none; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:1px;";
-                a.innerText = word;
+                a.style.cssText = "color:inherit; text-decoration:none; font-weight:800; font-size:12px; letter-spacing:1px; cursor:pointer;";
+                a.innerText = cleanWord;
+                
                 target.appendChild(a);
             }
-            clearInterval(syncInterval);
-            console.log("V1.40: Live Sidebar Sync Complete.");
+            clearInterval(autoSync); // Stop searching once it finds your topics
+            console.log("Automation Active: Header synced with sidebar.");
         }
-
-        if (checkCount > 10) clearInterval(syncInterval); // Stop after 5 seconds
     }, 500);
 })();
 //]]>
