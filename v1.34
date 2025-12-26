@@ -492,22 +492,49 @@ html {
 /* 4. Sidebar Widths */
 #sidebar-left, .sidebar-left { flex: 0 0 280px !important; order: -1; }
 #sidebar-right, .sidebar-right { flex: 0 0 280px !important; order: 1; }
+/* 1. REMOVE THE GAP: Pull content up to touch the header */
+.main-outer, .content-inner, #main-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* 2. MAX EDGE LOGIC: Push sidebars to the glass edges */
+.content-outer, .content-inner, .columns {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 3. MIDDLE AREA: Expand to full available space */
+#main-wrapper {
+    display: flex !important;
+    width: 100% !important;
+}
+
+#main {
+    flex: 1 !important;
+    padding: 20px 3% !important; /* Standard focus padding */
+}
+
+/* Sidebar Widths on Edges */
+#sidebar-left { flex: 0 0 260px !important; order: -1; }
+#sidebar-right { flex: 0 0 280px !important; order: 1; }
     ]]></b:skin>
     
   </head>
 
   <body>
-<div class='custom-header-wrapper' style='background: #FFFFFF; border-bottom: 1px solid #F0F0F0; width: 100%; padding: 30px 0; margin: 0;'>
-  <div style='display: flex; align-items: center; justify-content: center; position: relative; width: 100%; min-height: 160px;'>
+<div id='custom-header' style='background: #FFFFFF; border-bottom: 1px solid #EEEEEE; width: 100%; padding: 20px 0; margin: 0; display: block; position: relative;'>
+  <div style='max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: center;'>
     
-    <a expr:href='data:blog.homepageUrl' style='display: block !important;'>
-      <img alt='BYTE2BUILD' src='https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true' style='height: 150px !important; width: auto !important; max-height: 150px !important; display: block !important; outline: none;'/>
+    <a expr:href='data:blog.homepageUrl' style='display: block;'>
+      <img alt='BYTE2BUILD' src='https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true' style='height: 110px !important; width: auto !important; display: block;'/>
     </a>
 
-    <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background:none; border:none; cursor:pointer; font-size:30px; position: absolute; right: 5%; top: 50%; transform: translateY(-50%);'>
+    <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background:none; border:none; cursor:pointer; font-size:28px; position: absolute; right: 30px;'>
       🌓
     </button>
-
   </div>
 </div>
 
