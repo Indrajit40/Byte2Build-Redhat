@@ -37,22 +37,80 @@
   box-sizing: border-box;
 }
 
-/* --- REPLACE THE OLD .premium-header BLOCK WITH THIS --- */
+/* --- V1.31 VISIBILITY & CLEANUP FIX --- */
 .premium-header { 
-  width: 100%; 
-  height: 90px; 
+  width: 100%; height: 90px; 
   background: #ffffff !important; 
-  display: flex; 
-  flex-direction: row; 
-  align-items: center; 
-  justify-content: space-between; 
-  padding: 0 40px; 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  z-index: 1000;
-  border-bottom: 1px solid #e2e8f0; 
-  box-sizing: border-box;
+  display: flex; flex-direction: row; align-items: center; justify-content: space-between; 
+  padding: 0 40px; position: fixed; top: 0; left: 0; z-index: 1000;
+  border-bottom: 1px solid #e2e8f0; box-sizing: border-box;
+}
+
+/* Fix: Make text white when Dark Mode is ON */
+body.dark-mode .premium-header {
+  background: #000000 !important;
+  border-bottom: 1px solid #334155;
+}
+body.dark-mode .brand-text-group h1 {
+  color: #ffffff !important;
+}
+body.dark-mode .brand-text-group p {
+  color: #94a3b8 !important;
+}
+
+/* Hide the duplicate Blogger search box in the sidebar/header */
+#Search1, .mobile-search, .sidebar .search-form {
+  display: none !important;
+}
+
+/* Professional Search Input inside the Header */
+.header-right input {
+  background: transparent; border: none; outline: none; font-size: 13px; width: 140px;
+  color: #0f172a; /* Black text in Light Mode */
+}
+body.dark-mode .header-right input {
+  color: #ffffff !important; /* White text in Dark Mode */
+}
+
+/* Fix for Logo Clarity (Sharp Rendering) */
+.premium-header img {
+  height: 65px; 
+  width: auto; 
+  image-rendering: -webkit-optimize-contrast; /* Improves sharpness */
+  object-fit: contain;
+}
+
+/* Matching Logo Color Format for Title */
+.brand-text-group h1 {
+  margin: 0; 
+  font-size: 26px; 
+  font-weight: 900; 
+  color: #0f172a; /* Matches your professional dark theme */
+  line-height: 1; 
+  text-transform: uppercase; /* CAPITALIZED LIKE YOUR LOGO DESIGN */
+  letter-spacing: -0.5px;
+}
+
+/* CLEAN MODE SYMBOL ONLY */
+.theme-toggle {
+  background: transparent;
+  color: #1e293b;
+  border: 1px solid #e2e8f0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+body.dark-mode .theme-toggle {
+  color: #ffffff;
+  border-color: #334155;
+  background: #1e293b;
 }
 
 /* Add this right below it to handle the Dark Mode correctly */
@@ -268,24 +326,24 @@ html {
   </head>
 
   <body>
-   <header class='premium-header'>
+  <header class='premium-header'>
   <div class='header-left' style='display: flex; align-items: center; gap: 15px;'>
     <a expr:href='data:blog.homepageUrl' style='display: flex; align-items: center; gap: 12px; text-decoration: none;'>
-      <img alt='Byte2Build' src='https://raw.githubusercontent.com/Indrajit40/Byte2Build-Redhat/main/log-withouttag-2025%20v1.jpg' style='height: 65px; width: auto; object-fit: contain;'/>
+      <img alt='BYTE2BUILD' src='https://raw.githubusercontent.com/Indrajit40/Byte2Build-Redhat/main/log-withouttag-2025%20v1.jpg' style='height: 60px; width: auto; object-fit: contain;'/>
       <div class='brand-text-group'>
-        <h1 style='margin: 0; font-size: 24px; font-weight: 800; color: #0f172a; line-height: 1; font-family: sans-serif;'>Byte2Build</h1>
-        <p style='margin: 4px 0 0; font-size: 11px; color: #64748b; font-weight: 500; letter-spacing: 0.3px;'>Learn one command, master one concept, grow one byte at a time.</p>
+        <h1 style='margin: 0; font-size: 24px; font-weight: 900; line-height: 1; text-transform: uppercase;'>BYTE2BUILD</h1>
+        <p style='margin: 4px 0 0; font-size: 11px; font-weight: 500;'>Learn one command, master one concept, grow one byte at a time.</p>
       </div>
     </a>
   </div>
 
   <div class='header-right' style='display: flex; align-items: center; gap: 15px;'>
     <form action='/search' method='get' style='display: flex; align-items: center; background: #f1f5f9; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0;'>
-      <input name='q' placeholder='Search Linux...' style='background: transparent; border: none; outline: none; font-size: 13px; width: 130px; color: #0f172a;' type='text'/>
-      <button style='background: none; border: none; cursor: pointer; font-size: 14px; padding: 0;' type='submit'>🔍</button>
+      <input name='q' placeholder='Search tutorials...' type='text'/>
+      <button style='background: none; border: none; cursor: pointer;' type='submit'>🔍</button>
     </form>
 
-    <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background: #1e293b; color: #ffffff; border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: bold; white-space: nowrap; transition: 0.3s;'>🌓 MODE</button>
+    <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background: #1e293b; color: #fff; border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; font-size: 16px;'>🌓</button>
   </div>
 </header>
 
