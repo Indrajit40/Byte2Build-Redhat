@@ -20,59 +20,71 @@
       html, body { height: 100%; margin: 0; padding: 0; }
       body { display: flex; flex-direction: column; background: var(--body-bg); color: var(--text-primary); font-family: 'Inter', sans-serif; line-height: 1.6; }
       
-    /* --- V1.31 ATTRACTIVE ENGINEERING HEADER --- */
-      .premium-header { 
-        width: 100%; height: 95px; 
-        background: #ffffff !important; 
-        display: flex; flex-direction: row; align-items: center; justify-content: space-between; 
-        padding: 0 40px; position: fixed; top: 0; left: 0; z-index: 1000;
-        border-bottom: 1px solid #e2e8f0; box-sizing: border-box;
-      }
+  /* --- V1.35 AUTHORITY HEADER: DYNAMIC TOPICS & CLEAN ICON --- */
+.premium-header { 
+  width: 100%; height: 90px; background: #ffffff !important; 
+  display: flex; align-items: center; justify-content: space-between; 
+  padding: 0 40px; position: fixed; top: 0; left: 0; z-index: 1000;
+  border-bottom: 1px solid #e2e8f0; box-sizing: border-box;
+}
 
-      /* Logo Sharpness Fix */
-      .premium-header img {
-        height: 65px; width: auto; 
-        image-rendering: -webkit-optimize-contrast; 
-        object-fit: contain;
-      }
+/* 1. BRANDING: Bold Engineering Identity */
+.brand-text-group h1 {
+  margin: 0 !important; font-size: 24px !important; font-weight: 900 !important; 
+  color: #0f172a !important; text-transform: uppercase; letter-spacing: -1px; line-height: 1;
+}
+.brand-text-group p {
+  margin: 4px 0 0 !important; font-size: 11px !important; color: #64748b !important; 
+  font-weight: 600; letter-spacing: 0.2px; line-height: 1.2;
+}
 
-      /* Attractive Bold Title: Matches Logo Design */
-      .brand-text-group h1 {
-        margin: 0 !important; 
-        font-size: 28px !important; 
-        font-weight: 900 !important; 
-        color: #0f172a !important; 
-        line-height: 1; 
-        text-transform: uppercase; 
-        letter-spacing: -1px;
-      }
+/* 2. RIGHT-SIDE GROUPING (Topics + Toggle) */
+.header-right {
+  display: flex; align-items: center; gap: 20px;
+}
 
-      /* Attractive Tagline */
-      .brand-text-group p {
-        margin: 5px 0 0 !important; 
-        font-size: 11.5px !important; 
-        color: #64748b !important; 
-        font-weight: 500; 
-        letter-spacing: 0.2px;
-      }
+/* Dynamic Topics Styling (Right side edge) */
+#dynamic-topics {
+  display: flex; gap: 15px; align-items: center;
+}
+.dynamic-link {
+  color: #1e293b; text-decoration: none; font-size: 12px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s;
+  cursor: pointer;
+}
+.dynamic-link:hover { color: #2563eb; }
 
-      /* REMOVE DOUBLE SEARCH: Hide Header Search and Blogger Widgets */
-      #Search1, .mobile-search, .header-right form {
-        display: none !important;
-      }
+/* 3. CLEAN ICON-ONLY TOGGLE (No Circle) */
+.theme-toggle-btn {
+  background: transparent !important; border: none !important;
+  cursor: pointer; font-size: 22px; display: flex; align-items: center;
+  justify-content: center; padding: 5px; color: #0f172a; transition: transform 0.3s ease;
+}
 
-      /* --- DARK MODE VISIBILITY FIX --- */
-      body.dark-mode .premium-header {
-        background: #000000 !important;
-        border-bottom: 1px solid #1e293b;
-      }
-      body.dark-mode .brand-text-group h1 {
-        color: #ffffff !important;
-      }
-      body.dark-mode .brand-text-group p {
-        color: #94a3b8 !important;
-      }
-      
+/* --- DARK MODE VISIBILITY (STAYS INTACT) --- */
+body.dark-mode .premium-header { background: #000000 !important; border-bottom: 1px solid #1e293b; }
+body.dark-mode .brand-text-group h1,
+body.dark-mode .dynamic-link,
+body.dark-mode .theme-toggle-btn { color: #ffffff !important; }
+body.dark-mode .brand-text-group p { color: #94a3b8 !important; }
+
+/* Mobile View Logic */
+@media (max-width: 768px) {
+  #dynamic-topics { display: none; } /* Keeps header clean on mobile */
+  .premium-header { padding: 0 15px; }
+  .brand-text-group h1 { font-size: 19px !important; }
+  .brand-text-group p { font-size: 9px !important; }
+}
+
+/* Smooth Scroll for Anchor Links */
+html { scroll-behavior: smooth; }
+main, .main-container { margin-top: 110px !important; scroll-margin-top: 110px; }
+
+/* UI Cleanup */
+#Search1, .mobile-search, .header-right form { display: none !important; }
+/* Global Cleanup */
+#Search1, .mobile-search, .header-right form { display: none !important; }
+main, .main-container { margin-top: 110px !important; }
       /* Push content down so it's not hidden under header */
       main, .main-container {
         margin-top: 115px !important;
@@ -346,11 +358,10 @@ html {
   </head>
 
   <body>
- <header class='premium-header'>
-  <div class='header-left' style='display: flex; align-items: center; gap: 18px;'>
-    <a expr:href='data:blog.homepageUrl' style='display: flex; align-items: center; gap: 15px; text-decoration: none;'>
-      <img alt='BYTE2BUILD' src='https://raw.githubusercontent.com/Indrajit40/Byte2Build-Redhat/main/log-withouttag-2025%20v1.jpg' style='height: 65px; width: auto; object-fit: contain;'/>
-      
+<header class='premium-header'>
+  <div class='header-left'>
+    <a expr:href='data:blog.homepageUrl' style='display: flex; align-items: center; gap: 12px; text-decoration: none;'>
+      <img alt='BYTE2BUILD' src='https://raw.githubusercontent.com/Indrajit40/Byte2Build-Redhat/main/log-withouttag-2025%20v1.jpg' style='height: 55px; width: auto;'/>
       <div class='brand-text-group'>
         <h1>BYTE2BUILD</h1>
         <p>Learn one command, master one concept, grow one byte at a time.</p>
@@ -358,9 +369,15 @@ html {
     </a>
   </div>
 
-  <div class='header-right'>
-    <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background: #1e293b; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: 0.3s;'>🌓</button>
-  </div>
+  <div class='header-right' style='display: flex; align-items: center; gap: 20px;'>
+  
+  <div id='dynamic-topics' style='display: flex; gap: 15px; align-items: center;'>
+      </div>
+  
+  <button class='theme-toggle-btn' onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' title='Toggle Mode'>
+    🌓
+  </button>
+</div>
 </header>
 
     <div class='main-grid'>
@@ -1008,6 +1025,56 @@ function buildJourneyMenu() {
 
 buildJourneyMenu();
 window.addEventListener('load', buildJourneyMenu);
+//]]>
+</script>
+ <script type='text/javascript'>
+//<![CDATA[
+(function() {
+    var target = document.getElementById("dynamic-topics");
+    if (!target) return;
+
+    // 1. IMMEDIATE SAFETY NET: Show these immediately
+    var fallbackTopics = ["RHCSA", "LINUX"];
+    function showFallback() {
+        target.innerHTML = ""; // Clear
+        fallbackTopics.forEach(function(word) {
+            var a = document.createElement("a");
+            a.href = "#main-container";
+            a.className = "dynamic-link";
+            a.style.cssText = "color:inherit; text-decoration:none; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:1px;";
+            a.innerText = word;
+            target.appendChild(a);
+        });
+    }
+    showFallback(); // Run instantly
+
+    // 2. SMART SYNC: Try to find actual sidebar labels for 5 seconds
+    var checkCount = 0;
+    var syncInterval = setInterval(function() {
+        checkCount++;
+        // Looking for Blogger's specific label classes
+        var labels = document.querySelectorAll(".label-name, .Label a, .cloud-label-widget-content a");
+        
+        if (labels.length > 0) {
+            target.innerHTML = ""; // Replace safety net with real data
+            for (var i = 0; i < 2 && i < labels.length; i++) {
+                var text = labels[i].innerText.replace(/\(\d+\)/g, "").trim();
+                var word = text.split(" ")[0].toUpperCase();
+                
+                var a = document.createElement("a");
+                a.href = "#main-container";
+                a.className = "dynamic-link";
+                a.style.cssText = "color:inherit; text-decoration:none; font-weight:800; font-size:12px; text-transform:uppercase; letter-spacing:1px;";
+                a.innerText = word;
+                target.appendChild(a);
+            }
+            clearInterval(syncInterval);
+            console.log("V1.40: Live Sidebar Sync Complete.");
+        }
+
+        if (checkCount > 10) clearInterval(syncInterval); // Stop after 5 seconds
+    }, 500);
+})();
 //]]>
 </script>
   </body>
