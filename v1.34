@@ -464,29 +464,54 @@ html {
 .post-body [id], .full-post-card [id] {
   scroll-margin-top: 220px;
 }
+/* BREAK THE THEME WIDTH LOCK */
+
+/* 1. Force the main container to span the whole monitor */
+.content-outer, .content-inner, .main-outer, .columns, #content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* 2. Force Left/Right Sidebars to the Glass Edges */
+#main-wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 3. Make Middle Block wide but centered */
+#main {
+    flex: 1 !important;
+    margin: 0 40px !important; /* Space for reading comfort */
+}
+
+/* 4. Sidebar Widths */
+#sidebar-left, .sidebar-left { flex: 0 0 280px !important; order: -1; }
+#sidebar-right, .sidebar-right { flex: 0 0 280px !important; order: 1; }
     ]]></b:skin>
     
   </head>
 
   <body>
-<header class='premium-header'>
-  <div class='header-left'>
-    <a expr:href='data:blog.homepageUrl' style='display: flex; align-items: center; gap: 12px; text-decoration: none;'>
-      <img alt='LOGO' src='https://raw.githubusercontent.com/Indrajit40/Byte2Build-Redhat/main/log-withouttag-2025%20v1.jpg' style='height: 45px; width: auto;'/>
-      <div class='brand-text-group'>
-        <h1 style='color: var(--text-primary); margin:0; font-size:18px; font-weight:900;'>BYTE2BUILD</h1>
-        <p style='color: var(--text-secondary); margin:0; font-size:10px; font-weight:600;'>Learn one command, master one concept, grow one byte at a time.</p>
-      </div>
+<div class='custom-header-wrapper' style='background: #FFFFFF; border-bottom: 1px solid #F0F0F0; width: 100%; padding: 30px 0; margin: 0;'>
+  <div style='display: flex; align-items: center; justify-content: center; position: relative; width: 100%; min-height: 160px;'>
+    
+    <a expr:href='data:blog.homepageUrl' style='display: block !important;'>
+      <img alt='BYTE2BUILD' src='https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true' style='height: 150px !important; width: auto !important; max-height: 150px !important; display: block !important; outline: none;'/>
     </a>
-  </div>
-  <button class='theme-toggle-btn' onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background:none; border:none; cursor:pointer; font-size:20px; color:var(--text-primary);'>🌓</button>
-</header>
 
-<div class='search-wrapper'>
-  <form action='/search' method='get' style='display: flex; width: 100%;'>
-    <input name='q' placeholder='Search commands...' type='text'/>
-  </form>
+    <button onclick='document.body.classList.toggle(&quot;dark-mode&quot;)' style='background:none; border:none; cursor:pointer; font-size:30px; position: absolute; right: 5%; top: 50%; transform: translateY(-50%);'>
+      🌓
+    </button>
+
+  </div>
 </div>
+
+
     
 <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
       <aside>
