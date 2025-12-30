@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html
+  b:css="true"
+  b:defaultwidgetversion="2"
+  b:layoutsVersion="3"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:b="http://www.google.com/2005/gml/b"
+  xmlns:data="http://www.google.com/2005/gml/data"
+  xmlns:expr="http://www.google.com/2005/gml/expr">
+
+<head>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title><data:blog.pageTitle/></title>
+  <b:include data="blog" name="all-head-content"/>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+
+  <b:skin><![CDATA[
+/* ===== VARIABLES ===== */
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --border: #e2e8f0;
+}
+body.dark {
+  --bg: #000000;
+  --card: #0a0a0a;
+  --text: #ffffff;
+  --border: #262626;
+}
+
+/* ===== BASE ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ===== HEADER ===== */
+#header {
+  height: 90px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+#header img { height: 70px; }
+#header .spacer { flex: 1; }
+#header button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+/* ===== GRID ===== */
+.main-grid {
+  margin-top: 110px;
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+/* ===== BLOCKS ===== */
+aside, main {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  ]]></b:skin>
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<div id="header">
+  <a expr:href="data:blog.homepageUrl">
+    <img
+      alt="BYTE2BUILD"
+      src="https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true"/>
+  </a>
+  <div class="spacer"></div>
+  <button onclick="document.body.classList.toggle('dark')">🌓</button>
+</div>
+
+<!-- ===== LAYOUT ===== -->
+<div class="main-grid">
+
+  <!-- LEFT -->
+  <aside>
+    <b:section id="sidebar-left" showaddelement="yes"/>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <b:section id="main">
+      <b:widget id="Blog1" type="Blog" visible="true"/>
+    </b:section>
+  </main>
+
+  <!-- RIGHT -->
+  <aside>
+    <b:section id="sidebar-right" showaddelement="yes"/>
+  </aside>
+
+</div>
+
+</body>
+</html>
