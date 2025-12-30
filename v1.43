@@ -13,6 +13,85 @@
     <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
 
    <b:skin><![CDATA[
+/* ==================================================
+   FEATURE 3 — FINAL (BLOGGER-CORRECT)
+   ================================================== */
+
+/* ---------------- HOME PAGE ---------------- */
+body.index {
+  background:
+    linear-gradient(rgba(248,250,252,0.9), rgba(248,250,252,0.9)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475")
+    center / cover no-repeat fixed !important;
+}
+
+/* No LEFT sidebar on home */
+body.index #sidebar-left {
+  display: none !important;
+}
+
+/* RIGHT sidebar visible on home */
+body.index #sidebar-right {
+  display: block !important;
+}
+
+/* Square post cards */
+body.index .topic-card {
+  aspect-ratio: 1 / 1;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+}
+
+
+/* ---------------- STUDY / POST PAGE ---------------- */
+
+/* White notebook background */
+body.item-view,
+body.post,
+body.is-post,
+body.blog-post,
+body.single {
+  background: #ffffff !important;
+}
+
+/* LEFT sidebar visible */
+body.item-view #sidebar-left,
+body.post #sidebar-left,
+body.is-post #sidebar-left,
+body.blog-post #sidebar-left,
+body.single #sidebar-left {
+  display: block !important;
+}
+
+/* RIGHT sidebar removed */
+body.item-view #sidebar-right,
+body.post #sidebar-right,
+body.is-post #sidebar-right,
+body.blog-post #sidebar-right,
+body.single #sidebar-right {
+  display: none !important;
+}
+
+/* Wide study layout */
+body.item-view .main-grid,
+body.post .main-grid,
+body.is-post .main-grid,
+body.blog-post .main-grid,
+body.single .main-grid {
+  grid-template-columns: 260px 1fr !important;
+}
+
+/* Clean reading area */
+body.item-view main,
+body.item-view article,
+body.item-view .post-body {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+
+
   :root {
     --brand-blue: #2563eb;
     --deep-navy: #020617;
@@ -23,20 +102,126 @@
     --border-color: #e2e8f0;
   }
 
+/* ==================================================
+   FEATURE 3 — STUDY MODE (FINAL, WORKING)
+   ================================================== */
 
-
-/* ===============================
-   STUDY MODE – POST PAGE ONLY
-   FINAL (v1.43 CLEAN)
-   =============================== */
-
-/* White background on posts */
-body.item-view {
+/* ---------- STUDY PAGE BASE ---------- */
+body[style*="--is-study-page"],
+body.item-view,
+body.post,
+body.is-post,
+body.blog-post,
+body.single {
   background: #ffffff !important;
 }
 
-/* Reading area */
+/* Reading content */
+body[style*="--is-study-page"] main,
+body[style*="--is-study-page"] article,
+body[style*="--is-study-page"] .post-body {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* ---------- SIDEBAR LOGIC ---------- */
+
+/* LEFT SIDEBAR APPEARS */
+body[style*="--is-study-page"] #sidebar-left {
+  display: block !important;
+}
+
+/* Show only active topic */
+body[style*="--is-study-page"] #sidebar-left .journey-group:not(.active-topic) {
+  display: none !important;
+}
+
+/* RIGHT SIDEBAR REMOVED */
+body[style*="--is-study-page"] #sidebar-right {
+  display: none !important;
+}
+
+/* MAX WIDTH READING */
+body[style*="--is-study-page"] .main-grid {
+  grid-template-columns: 260px 1fr !important;
+}
+
+/* ---------- CLEAN STUDY LOOK ---------- */
+body[style*="--is-study-page"] .topic-card,
+body[style*="--is-study-page"] .sidebar-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+/* ==================================================
+   FEATURE 3 — FINAL (BLOGGER SAFE & WORKING)
+   ================================================== */
+
+/* ---------------- HOME PAGE ---------------- */
+body.index {
+  background:
+    linear-gradient(rgba(248,250,252,0.9), rgba(248,250,252,0.9)),
+    url("https://images.unsplash.com/photo-1518770660439-4636190af475")
+    center / cover no-repeat fixed !important;
+}
+
+/* No LEFT sidebar on home */
+body.index #sidebar-left {
+  display: none !important;
+}
+
+/* RIGHT sidebar visible on home */
+body.index #sidebar-right {
+  display: block !important;
+}
+
+/* Square post cards on home */
+body.index .topic-card {
+  aspect-ratio: 1 / 1;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+}
+
+
+/* ---------------- STUDY / POST PAGE ---------------- */
+
+/* White notebook background */
+body.item-view,
+body.post,
+body.is-post,
+body.blog-post,
+body.single {
+  background: #ffffff !important;
+}
+
+/* LEFT sidebar visible */
+body.item-view #sidebar-left,
+body.post #sidebar-left,
+body.is-post #sidebar-left,
+body.blog-post #sidebar-left,
+body.single #sidebar-left {
+  display: block !important;
+}
+
+/* RIGHT sidebar hidden */
+body.item-view #sidebar-right,
+body.post #sidebar-right,
+body.is-post #sidebar-right,
+body.blog-post #sidebar-right,
+body.single #sidebar-right {
+  display: none !important;
+}
+
+/* Wide study layout */
 body.item-view .main-grid,
+body.post .main-grid,
+body.is-post .main-grid,
+body.blog-post .main-grid,
+body.single .main-grid {
+  grid-template-columns: 260px 1fr !important;
+}
+
+/* Clean reading area */
 body.item-view main,
 body.item-view article,
 body.item-view .post-body {
@@ -44,81 +229,6 @@ body.item-view .post-body {
   color: #000000 !important;
 }
 
-/* Hide left sidebar while reading */
-body.item-view #sidebar-left {
-  display: none !important;
-}
-
-/* Expand content area */
-body.item-view .main-grid {
-  grid-template-columns: 1fr 280px !important;
-}
-
-/* Home page untouched */
-body.index {
-  background: inherit;
-}
-
-/* ==================================================
-   [PATCH v1.42.3] STUDY MODE (POST/PAGE) WHITE UI
-   ================================================== */
-
-/* POST (STUDY MODE) */
-body.item-view,
-body.static_page {
-  background: #ffffff !important;
-}
-
-/* Main reading area */
-body.item-view main,
-body.static_page main,
-body.item-view #main,
-body.static_page #main {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
-/* Post text readability */
-body.item-view .post-body,
-body.static_page .post-body,
-body.item-view article,
-body.static_page article {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
-/* Disable wallpaper / effects */
-body.item-view .main-grid,
-body.static_page .main-grid {
-  background: #ffffff !important;
-  box-shadow: none !important;
-}
-
-/* HOME PAGE (keep design) */
-body.index {
-  background: transparent !important;
-}
-
-/* ==================================================
-   [STEP 3.3] STUDY MODE SIDEBAR BEHAVIOR
-   ================================================== */
-
-/* In reading mode, simplify left sidebar */
-body.item-view #sidebar-left .journey-group:not(.active-topic) {
-  display: none !important;
-}
-
-/* Keep anchors clickable */
-body.item-view #sidebar-left a {
-  pointer-events: auto !important;
-  opacity: 1 !important;
-}
-
-/* Right sidebar stays fixed — no sliding */
-body.item-view #sidebar-right {
-  display: block !important;
-  width: 280px !important;
-}
 
 /* ==================================================
    [PATCH v1.42.2] LOGO RENDER + SIZE LOCK FIX
@@ -1203,8 +1313,7 @@ aside::-webkit-scrollbar-thumb {
       as="image"
       fetchpriority="high"/>
 
- <body expr:class='(data:view.isPost or data:view.isPage) ? "item-view" : "index"'>
-
+  <body>
 <!-- [PATCH 2.1 – HEADER ALIGNMENT + LOGO INSTANT RENDER | v1.41 SAFE] -->
 <!-- [PATCH 2.2] HEADER – ZERO DELAY LOGO (v1.42 SAFE) -->
 <div id='header-container'
@@ -1253,18 +1362,7 @@ aside::-webkit-scrollbar-thumb {
 
 
     
-
-
-
-<b:if cond='data:view.isPost'>
-  <div class='study-mode'>
-    <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
-<b:else/>
-    <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
-</b:if>
-
-
-
+<div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
       <aside>
         <div class='sidebar-card' style='padding: 20px;'>
           <div class='nav-hub' style='display: flex; align-items: center; gap: 10px; margin-bottom: 20px;'>
@@ -2051,22 +2149,8 @@ aside::-webkit-scrollbar-thumb {
             <a href='https://www.youtube.com/@Byte2Build' target='_blank'><svg style='width:20px;height:20px;fill:#94a3b8' viewBox='0 0 24 24'><path d='M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z'/></svg></a>
           </div>
         </div>
-           </aside>
-    </div>
-
-
-
-<b:if cond='data:view.isPost'>
-    </div>   <!-- closes main-grid -->
-  </div>     <!-- closes study-mode -->
-<b:else/>
-    </div>   <!-- closes main-grid -->
-</b:if>
-
-
-
-<a href='#' id='back-to-top' title='Back to top'>
-
+      </aside>
+    </div> <a href='#' id='back-to-top' title='Back to top'>
       <svg style='width:24px;height:24px;fill:white' viewBox='0 0 24 24'><path d='M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z'/></svg>
     </a>
 
