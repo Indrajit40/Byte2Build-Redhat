@@ -1282,11 +1282,18 @@ aside::-webkit-scrollbar-thumb {
 
 
     
+
+
+
 <b:if cond='data:view.isPost'>
   <div class='study-mode'>
+    <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
 </b:if>
 
-<div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
+<b:if cond='not data:view.isPost'>
+  <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
+</b:if>
+
 
       <aside>
         <div class='sidebar-card' style='padding: 20px;'>
@@ -2078,8 +2085,14 @@ aside::-webkit-scrollbar-thumb {
     </div>
 
 <b:if cond='data:view.isPost'>
-  </div>
+    </div>   <!-- closes main-grid -->
+  </div>     <!-- closes study-mode -->
 </b:if>
+
+<b:if cond='not data:view.isPost'>
+  </div>     <!-- closes main-grid (home) -->
+</b:if>
+
 
 <a href='#' id='back-to-top' title='Back to top'>
 
