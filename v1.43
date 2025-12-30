@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html>
-<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<html b:css='true' b:defaultwidgetversion='2' b:layoutsVersion='3' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
     <meta content='width=device-width,initial-scale=1' name='viewport'/>
     <title><data:blog.pageTitle/></title>
@@ -13,145 +13,16 @@
     <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
 
    <b:skin><![CDATA[
-/* ==================================================
-   FEATURE 3 — FINAL (BLOGGER-CORRECT)
-   ================================================== */
-
-/* ---------------- HOME PAGE ---------------- */
-body.index {
-  background:
-    linear-gradient(rgba(248,250,252,0.9), rgba(248,250,252,0.9)),
-    url("https://images.unsplash.com/photo-1518770660439-4636190af475")
-    center / cover no-repeat fixed !important;
+:root {
+  --brand-blue: #2563eb;
+  --deep-navy: #020617;
+  --body-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
 }
 
-/* No LEFT sidebar on home */
-body.index #sidebar-left {
-  display: none !important;
-}
-
-/* RIGHT sidebar visible on home */
-body.index #sidebar-right {
-  display: block !important;
-}
-
-/* Square post cards */
-body.index .topic-card {
-  aspect-ratio: 1 / 1;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(6px);
-  border-radius: 18px;
-}
-
-
-/* ---------------- STUDY / POST PAGE ---------------- */
-
-/* White notebook background */
-body.item-view,
-body.post,
-body.is-post,
-body.blog-post,
-body.single {
-  background: #ffffff !important;
-}
-
-/* LEFT sidebar visible */
-body.item-view #sidebar-left,
-body.post #sidebar-left,
-body.is-post #sidebar-left,
-body.blog-post #sidebar-left,
-body.single #sidebar-left {
-  display: block !important;
-}
-
-/* RIGHT sidebar removed */
-body.item-view #sidebar-right,
-body.post #sidebar-right,
-body.is-post #sidebar-right,
-body.blog-post #sidebar-right,
-body.single #sidebar-right {
-  display: none !important;
-}
-
-/* Wide study layout */
-body.item-view .main-grid,
-body.post .main-grid,
-body.is-post .main-grid,
-body.blog-post .main-grid,
-body.single .main-grid {
-  grid-template-columns: 260px 1fr !important;
-}
-
-/* Clean reading area */
-body.item-view main,
-body.item-view article,
-body.item-view .post-body {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
-
-
-  :root {
-    --brand-blue: #2563eb;
-    --deep-navy: #020617;
-    --body-bg: #f8fafc;
-    --card-bg: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --border-color: #e2e8f0;
-  }
-
-/* ==================================================
-   FEATURE 3 — STUDY MODE (FINAL, WORKING)
-   ================================================== */
-
-/* ---------- STUDY PAGE BASE ---------- */
-body[style*="--is-study-page"],
-body.item-view,
-body.post,
-body.is-post,
-body.blog-post,
-body.single {
-  background: #ffffff !important;
-}
-
-/* Reading content */
-body[style*="--is-study-page"] main,
-body[style*="--is-study-page"] article,
-body[style*="--is-study-page"] .post-body {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
-/* ---------- SIDEBAR LOGIC ---------- */
-
-/* LEFT SIDEBAR APPEARS */
-body[style*="--is-study-page"] #sidebar-left {
-  display: block !important;
-}
-
-/* Show only active topic */
-body[style*="--is-study-page"] #sidebar-left .journey-group:not(.active-topic) {
-  display: none !important;
-}
-
-/* RIGHT SIDEBAR REMOVED */
-body[style*="--is-study-page"] #sidebar-right {
-  display: none !important;
-}
-
-/* MAX WIDTH READING */
-body[style*="--is-study-page"] .main-grid {
-  grid-template-columns: 260px 1fr !important;
-}
-
-/* ---------- CLEAN STUDY LOOK ---------- */
-body[style*="--is-study-page"] .topic-card,
-body[style*="--is-study-page"] .sidebar-card {
-  background: transparent !important;
-  box-shadow: none !important;
-}
 /* ==================================================
    FEATURE 3 — FINAL (BLOGGER SAFE & WORKING)
    ================================================== */
@@ -164,12 +35,12 @@ body.index {
     center / cover no-repeat fixed !important;
 }
 
-/* No LEFT sidebar on home */
+/* Hide LEFT sidebar on home */
 body.index #sidebar-left {
   display: none !important;
 }
 
-/* RIGHT sidebar visible on home */
+/* Keep RIGHT sidebar on home */
 body.index #sidebar-right {
   display: block !important;
 }
@@ -181,7 +52,6 @@ body.index .topic-card {
   backdrop-filter: blur(6px);
   border-radius: 18px;
 }
-
 
 /* ---------------- STUDY / POST PAGE ---------------- */
 
@@ -228,6 +98,7 @@ body.item-view .post-body {
   background: #ffffff !important;
   color: #000000 !important;
 }
+
 
 
 /* ==================================================
