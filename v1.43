@@ -22,72 +22,43 @@
     --text-secondary: #475569;
     --border-color: #e2e8f0;
   }
-/* ==================================================
-   [STEP 3.1 – FINAL] STUDY MODE (POST ONLY)
-   ================================================== */
 
-.study-mode {
+
+
+/* ===============================
+   STUDY MODE – POST PAGE ONLY
+   FINAL (v1.43 CLEAN)
+   =============================== */
+
+/* White background on posts */
+body.item-view {
   background: #ffffff !important;
 }
 
-.study-mode .post-body,
-.study-mode article,
-.study-mode p,
-.study-mode h1,
-.study-mode h2,
-.study-mode h3 {
-  background: #ffffff !important;
-  color: #000000 !important;
-}
-
-/* Kill home design effects in study mode */
-.study-mode .topic-card,
-.study-mode .sidebar-card,
-.study-mode .glass,
-.study-mode .blur {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* ==================================================
-   [PATCH v1.42.3] STUDY MODE (POST/PAGE) WHITE UI
-   ================================================== */
-
-/* POST & PAGE VIEW ONLY */
-body.is-post,
-body.is-page {
-  background: #ffffff !important;
-}
-
-/* Main reading area */
-body.is-post main,
-body.is-page main,
-body.is-post #main,
-body.is-page #main {
+/* Reading area */
+body.item-view .main-grid,
+body.item-view main,
+body.item-view article,
+body.item-view .post-body {
   background: #ffffff !important;
   color: #000000 !important;
 }
 
-/* Post text readability */
-body.is-post .post-body,
-body.is-page .post-body,
-body.is-post article,
-body.is-page article {
-  background: #ffffff !important;
-  color: #000000 !important;
+/* Hide left sidebar while reading */
+body.item-view #sidebar-left {
+  display: none !important;
 }
 
-/* Disable any wallpaper / effects */
-body.is-post .main-grid,
-body.is-page .main-grid {
-  background: #ffffff !important;
-  box-shadow: none !important;
+/* Expand content area */
+body.item-view .main-grid {
+  grid-template-columns: 1fr 280px !important;
 }
 
-/* Keep home page untouched */
-body.is-home {
-  background: transparent !important;
+/* Home page untouched */
+body.index {
+  background: inherit;
 }
+
 /* ==================================================
    [PATCH v1.42.3] STUDY MODE (POST/PAGE) WHITE UI
    ================================================== */
@@ -1288,11 +1259,10 @@ aside::-webkit-scrollbar-thumb {
 <b:if cond='data:view.isPost'>
   <div class='study-mode'>
     <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
+<b:else/>
+    <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
 </b:if>
 
-<b:if cond='not data:view.isPost'>
-  <div class='main-grid' style='display: grid; grid-template-columns: 280px 1fr 280px; gap: 20px; margin-top: 15px !important; padding-top: 0;'>
-</b:if>
 
 
       <aside>
@@ -2084,14 +2054,15 @@ aside::-webkit-scrollbar-thumb {
            </aside>
     </div>
 
+
+
 <b:if cond='data:view.isPost'>
     </div>   <!-- closes main-grid -->
   </div>     <!-- closes study-mode -->
+<b:else/>
+    </div>   <!-- closes main-grid -->
 </b:if>
 
-<b:if cond='not data:view.isPost'>
-  </div>     <!-- closes main-grid (home) -->
-</b:if>
 
 
 <a href='#' id='back-to-top' title='Back to top'>
