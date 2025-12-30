@@ -5,6 +5,11 @@
     <meta content='width=device-width,initial-scale=1' name='viewport'/>
     <title><data:blog.pageTitle/></title>
     <b:include data='blog' name='all-head-content'/>
+    <!-- [PATCH v1.42.1] LOGO PRELOAD FIX -->
+     <link rel="preload"
+      as="image"
+      href="https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true"/>
+
     <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
 
    <b:skin><![CDATA[
@@ -17,6 +22,36 @@
     --text-secondary: #475569;
     --border-color: #e2e8f0;
   }
+/* ==================================================
+   [PATCH v1.42.2] LOGO RENDER + SIZE LOCK FIX
+   ================================================== */
+
+/* Reserve space BEFORE image loads */
+#header-container {
+  min-height: 130px !important;
+}
+
+/* Lock logo box so browser paints immediately */
+.brand-wrapper {
+  display: inline-block !important;
+  width: auto;
+  height: 110px; /* SAME as your logo height */
+}
+
+/* Prevent shrink & delay */
+.brand-logo {
+  height: 110px !important;
+  width: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Prevent Blogger fade‑in */
+img {
+  animation: none !important;
+  transition: none !important;
+}
 
   /* 1. ATOMIC GLASS EDGE RESET */
   /* This kills the 1200px lock on your specific theme */
@@ -1090,18 +1125,16 @@ aside::-webkit-scrollbar-thumb {
             align-items:center;
             text-decoration:none;'>
 
-    <img
-      src='https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true'
-      alt='BYTE2BUILD'
-      width='auto'
-      height='110'
-      loading='eager'
-      decoding='sync'
-      fetchpriority='high'
-      style='display:block;
-             max-height:110px;
-             width:auto;
-             image-rendering:auto;'/>
+   <img alt='BYTE2BUILD'
+     class='brand-logo'
+     src='https://github.com/Indrajit40/Byte2Build-Redhat/blob/main/v1%20vector%20image%20wo%20tag%20%20svg.svg?raw=true'
+     loading='eager'
+     decoding='sync'
+     fetchpriority='high'
+     width='auto'
+     height='110'
+     style='display:block;'/>
+
   </a>
 
   <div style='flex-grow:1;'/>
